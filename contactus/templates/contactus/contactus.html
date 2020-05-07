@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<html>
+    <head>
+
+        {% load static %}
+        {% load crispy_forms_tags %} 
+        
+    
+        <title>MooMa</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="js/bootstrap-transition.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link href='https://fonts.googleapis.com/css?family=Satisfy' rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.5.0/css/all.css' integrity='sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU' crossorigin='anonymous'>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+      <style>
+    
+    body {
+      font: 400 15px/1.8 Lato, sans-serif;
+    background-color: #FFFFFF;
+      overflow-x: hidden;
+  }
+  h3, h4 {
+      margin: 10px 0 30px 0;
+      letter-spacing: 10px;
+      font-size: 20px;
+      color: #111;
+  }
+  .container {
+      padding: 80px 120px;
+  }
+
+  .container1 {
+      padding: 100px 80px;
+
+  }
+
+  .container3 {
+      padding: 20px 80px;
+
+  }
+  .person {
+      border: 10px solid transparent;
+      margin-bottom: 25px;
+      width: 80%;
+      height: 80%;
+      opacity: 0.7;
+  }
+  .person:hover {
+      border-color: #f1f1f1;
+  }
+  .carousel-inner img {
+      /*{#-webkit-filter: grayscale(90%);#}*/
+      width: 100%; /* Set width to 100% */
+      margin: auto;
+      height: 700px;
+  }
+
+  .carousel-caption h3 {
+      color: #2c3e50 ;
+      font-size: 50px;
+  }
+
+  .carousel-caption p{
+      color: #060E2F;
+      font-size: 25px;
+  }
+  @media (max-width: 600px) {
+    .carousel-caption {
+        ;
+        display: none; /* Hide the carousel text when the screen is less than 600 pixels wide */
+    }
+  }
+  .bg-1 {
+      background: #2d2d30;
+      color: #bdbdbd;
+  }
+  .bg-1 h3 {color: #fff;}
+  .bg-1 p {font-style: italic;}
+  .list-group-item:first-child {
+      border-top-right-radius: 0;
+      border-top-left-radius: 0;
+  }
+  .list-group-item:last-child {
+      border-bottom-right-radius: 0;
+      border-bottom-left-radius: 0;
+  }
+  .thumbnail {
+      padding: 0 0 15px 0;
+      border: none;
+      border-radius: 0;
+  }
+  .thumbnail p {
+      margin-top: 15px;
+      color: #555;
+  }
+  .btn {
+      padding: 10px 20px;
+      background-color: #333;
+      color: #f1f1f1;
+      border-radius: 0;
+      transition: .2s;
+  }
+  .btn:hover, .btn:focus {
+      border: 1px solid #333;
+      background-color: #fff;
+      color: #000;
+  }
+  .modal-header, h4, .close {
+      background-color: #333;
+      color: #fff !important;
+      text-align: center;
+      font-size: 30px;
+  }
+  .modal-header, .modal-body {
+      padding: 40px 50px;
+  }
+  .nav-tabs li a {
+      color: #777;
+  }
+
+  .navbar {
+      font-family: Montserrat, sans-serif;
+      margin-bottom: 0;
+      /*background-color: #2b669a;*/
+      background: -webkit-linear-gradient(to right, #FFFFFF, #FFFFFF);
+      background: linear-gradient(to right, #FFFFFF, #FFFFFF);
+      border: 0;
+      font-size: 15px !important;
+      font-weight: bold;
+      /*letter-spacing: 1px;*/
+      opacity: 0.8;
+      padding-top: 10px;
+      padding-bottom: 10px;
+  }
+  .navbar li a, .navbar .navbar-brand {
+      color: #707070 !important;
+  }
+  .navbar-nav li a:hover {
+      color: #29292c !important;
+  }
+  .navbar-nav li.active a {
+      color: #fff !important;
+      background-color: #29292c !important;
+  }
+  .navbar-default .navbar-toggle {
+      border-color: transparent;
+  }
+  .dropdown-toggle li a:hover {
+      color: #29292c !important;
+      border: none;
+   outline: none;
+   text-decoration: none;
+  }
+  .dropdown-toggle:hover,
+.dropdown-toggle:focus {
+  text-decoration: none;
+  color: #29292c !important;
+}
+  .dropdown-menu li a {
+      color: #000 !important;
+  }
+  .dropdown-menu li a:hover {
+      background-color: red !important;
+  }
+  footer {
+      background-color: #2b669a;
+      color: #f5f5f5;
+      padding: 32px;
+      background: -webkit-linear-gradient(to right, #31BDE6, #00003E);
+      background: linear-gradient(to right, #31BDE6, #00003E);
+      position: absolute;
+      width: 100%;
+  }
+
+  .form-control {
+      border-radius: 0;
+  }
+  textarea {
+      resize: none;
+  }
+
+      .span4 img {
+    margin-right: 10px;
+}
+.span4 .img-left {
+    float: left;
+}
+.span4 .img-right {
+    float: right;
+}
+.overlay {
+  position: absolute;
+  bottom:0px;
+  left: 0px;
+  right: 0px;
+   top:0px;
+  background-color: black;
+  overflow: hidden;
+  width: 360px;
+  height:0;
+  transition: 1s ease ;
+text-align: center;
+}
+
+.conti:hover .overlay {
+  bottom: 0;
+  height: 390px;
+  opacity: 0.8;
+}
+      .texting{
+    white-space: nowrap;
+  color: white;
+  font-size: 20px;
+  position: absolute;
+  overflow: hidden;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+}
+</style>
+</head>
+
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50">
+
+<script>
+            var map;
+
+            function initMap() {
+              if (navigator.geolocation) {
+                try {
+                  navigator.geolocation.getCurrentPosition(function(position) {
+                    var myLocation = {
+                      lat: position.coords.latitude,
+                      lng: position.coords.longitude
+                    };
+                    setPos(myLocation);
+                  });
+                } catch (err) {
+                  var myLocation = {
+                     lat: 17.3850,
+                     lng: 78.4867
+                  };
+                  setPos(myLocation);
+                }
+              } else {
+                var myLocation = {
+                    lat: 17.3850,
+                    lng: 78.4867
+                };
+                setPos(myLocation);
+              }
+            }
+
+            function setPos(myLocation) {
+              map = new google.maps.Map(document.getElementById('map'), {
+                center: myLocation,
+                zoom: 10
+              });
+
+              var service = new google.maps.places.PlacesService(map);
+              service.nearbySearch({
+                location: myLocation,
+                radius: 10000,
+                types: ['Hospitals']
+              }, processResults);
+
+            }
+
+            function processResults(results, status, pagination) {
+              if (status !== google.maps.places.PlacesServiceStatus.OK) {
+                return;
+              } else {
+                createMarkers(results);
+
+              }
+            }
+
+            function createMarkers(places) {
+              var bounds = new google.maps.LatLngBounds();
+              var placesList = document.getElementById('places');
+
+              for (var i = 0, place; place = places[i]; i++) {
+                var image = {
+                  url: place.icon,
+                  size: new google.maps.Size(71, 71),
+                  origin: new google.maps.Point(0, 0),
+                  anchor: new google.maps.Point(17, 34),
+                  scaledSize: new google.maps.Size(25, 25)
+                };
+
+                var marker = new google.maps.Marker({
+                  map: map,
+                  icon: image,
+                  title: place.name,
+                  animation: google.maps.Animation.DROP,
+                  position: place.geometry.location
+                });
+
+                bounds.extend(place.geometry.location);
+              }
+              map.fitBounds(bounds);
+            }
+</script>
+
+    
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="{% url 'home:home' %}" style="font-family: 'Satisfy', cursive; font-size:25px">MooMa</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="{% url 'home:home' %}">Home</a></li>
+        <li><a href="{% url 'aboutus:aboutus' %}">About us</a></li>
+        <li><a href="{% url 'technology:technology' %}">Technology</a></li>&nbsp;&nbsp;
+        <!--<li><a href="">Solutions</a></li>-->
+      
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#" style="padding-top:12px;float: left;color:#707070">Solutions
+          <span class="caret" style="color: #fff;" ></span></a>
+          <ul class="dropdown-menu">
+              <li><a href="">Milk Collection</a></li>
+              <li><a href="">Milk Processing</a></li>
+              <li><a href="">Cow trading and Breeding</a></li>
+              <li><a href="">B2B Marketplace</a></li>
+          </ul>
+          
+        <li><a href="">Login</a></li>
+        <li><a href="{% url 'contactus:showform' %}">Contact us</a></li>&nbsp;
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+<div id="map" style="height: 450px;width: 1280px; margin-top: 70px ;"></div>
+<!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDhtI9nVQCsQieN9rcn18aLLKA5BFbZzq4&signed_in=true&libraries=places&callback=initMap" async defer></script>
+-->
+
+<div id="contact" class="contact-box">
+    <div class="container" style="align:center;">
+        <center><h3 style=" color: #2c3e50; font-size: 25px; padding-bottom: 0px">CONTACT  US </h3></center>
+        <hr style="border: 1px solid #31BDE6;  width: 150px; " size="5">
+        <div class="row"style="padding-left:150px;" >
+            <div class="col-lg-7 col-sm-7 col-xs-12">
+              <div class="contact-block">
+                <form id="contactForm" action="{% url 'contactus:showform' %}" method="post">
+                  {% csrf_token %}
+                  <div class="row">
+                    <div class="col-md-6">Name
+                        <div class="form-group">{{ form.name }}
+                           
+                        </div>
+                    </div>
+                    <div class="col-md-6">Email Id 
+                        <div class="form-group">
+                             {{ form.email }}
+                        </div>
+                    </div>
+                    <div class="col-md-12">Phone Number
+                        <div class="form-group">
+                            {{ form.phonenumber }}
+                        </div>
+                    </div>
+                    <div class="col-md-12">Message 
+                        <div class="form-group">
+                            {{ form.message }}
+                        </div>
+                        <div class="submit-button text-center">
+                            <button class="btn btn-common" id="submit" type="submit">Send Message</button>
+                            <div id="msgSubmit" class="h3 text-center hidden"></div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+   
+
+<!--
+  <div class="container"style=" padding-bottom: 100px; padding-left: 150px; padding-right: 150px; ">
+  <br>
+
+      <div class="row" style="background-color: white; padding-left:50px; padding-right:50px;  padding-bottom: 40px">
+
+          <p style="color:#2c3e50; font-size: 35px; font-weight: bold; text-align: center; letter-spacing: 2px">CONTACT US</p>
+          <hr style="border: 1px solid #31BDE6;  width: 150px; " size="5">
+        
+          <br>
+
+          {% if form.errors %}
+               <p style="color:red;">
+                  Please correct the error{{ form.errors|pluralize }} below.
+               </p>
+          {% endif %}
+              
+          
+          {% if error %}
+              <h4 style="color:red;">
+                  {{ error }}
+              </h4>
+          {% endif %}
+          
+          <form action="{% url 'contactus:showform' %}" method="post">
+          </form>
+              {% csrf_token %}
+              {% for field in form %}
+              <fieldset class="control-group">
+                  <label class="control-label" for="id_{{ field.name }}">{{ field.label }}</label>
+                  <div class="controls">
+                        {{ field }}
+                  <p class="help-text">{{ field.help_text }} </p>
+                  </div>
+              </fieldset>
+            {% endfor %}
+
+              <br><br><button type="submit" class="btn btn-primary">Send Message</button>
+            </form>
+
+      </div>
+
+  </div>
+-->
+<!-- Footer -->
+<footer class="text-center">
+<div class="footer-left" style="float: left">
+
+    <p style="font-family: Satisfy; font-size: 40px">MooMa</p>
+
+    <p class="footer-links">
+        <a href="#"><span style="color: white; font-size: 18px">Home</span></a>
+      ·
+        <a href="#"><span style="color: white;font-size: 18px">About us </span></a>
+      ·
+        <a href="#"><span style="color: white;font-size: 18px ">Technology</span></a>
+      ·
+        <a href="#"><span style="color: white; font-size: 18px">Solutions</span></a>
+      ·
+        <a href="#"><span style="color: white; font-size: 18px">Login</span></a>
+      ·
+        <a href="#"><span style="color: white; font-size: 18px">Contact us</span></a>
+    </p>
+
+    <p class="footer-company-name">MooMa &copy; 2017</p>
+  </div>
+<div class="footer-right" style="float: right">
+<div>
+      <i class="fa fa-map-marker"></i>
+          <p><span>Hyderabad </span></p>
+    </div>
+
+    <div>
+      <i class="fa fa-phone"></i>
+      <p>+91 7489623154</p>
+    </div>
+
+    <div>
+      <i class="fa fa-envelope"></i>
+      <p><a href="mailto:support@company.com">Mooma@company.com</a></p>
+    </div>
+</div>
+
+<div class="footer-center">
+
+    <p class="footer-company-about" style="font-size: 20px; padding-top: 20px">
+      <span>About the company</span>
+      <br> 
+    </p>
+
+    <div class="footer-icons" style="font-size: 30px">
+
+      <a href="#"><i class="fa fa-facebook" style="color: white">&nbsp;</i></a>
+      <a href="#"><i class="fa fa-twitter" style="color: white">&nbsp;</i></a>
+      <a href="#"><i class="fa fa-linkedin" style="color: white">&nbsp;</i></a>
+
+    </div>
+
+  </div>
+</footer>
+
+</body>
