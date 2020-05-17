@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% load static %}
+
+<title>MooMa</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="js/bootstrap-transition.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link href='https://fonts.googleapis.com/css?family=Satisfy' rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.5.0/css/all.css' integrity='sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU' crossorigin='anonymous'>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<style>
+    
+body, html {
+  height: 100%;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+
+/* Add styles to the form container */
+.container {
+  position: absolute;
+  float: right;
+  right: 0;
+  margin: 30px;
+  max-width:320px;
+  height: 1300px;
+  padding-right: 55px;
+  background-color: white;
+}
+
+/* Full-width input fields */
+input[type=text], input[type=password] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  border: none;
+  background: #f1f1f1;
+}
+
+input[type=text]:focus, input[type=password]:focus{
+  background-color: #ddd;
+  outline: none;
+}
+
+
+/* Set a style for the submit button */
+.btn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}
+
+.btn:hover {
+  opacity: 1;
+}
+
+div.sticky {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  background-image: url("{% static 'images/farmerbg.png' %}");
+  height: 100%;
+  width:65%;
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: fixed;
+  background-attachment: fixed;
+}
+</style>
+</head>
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50">
+
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <!--<a class="navbar-brand" href="{% url 'home:home' %}" style="font-family: 'Satisfy', cursive; font-size:25px">MooMa</a>
+          -->
+          <img src="{% static 'images/logo4.png' %}" style="height:59px ; width:59px">
+          <img src="{% static 'images/logo3.png' %}" style="height:60px ; width:145px">
+          </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+          <ul class="nav navbar-nav navbar-right" class="list-inline">
+            <li><a href="{% url 'home:home' %}">Home</a></li>
+            <li><a href="{% url 'aboutus:aboutus' %}">About us</a></li>
+            <li><a href="{% url 'technology:technology' %}">Technology</a></li>&nbsp;&nbsp;
+            <!--<li><a href="">Solutions</a></li>-->
+            <div class="btn-group btn-group-inline">
+              
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#" style="padding-top:12px;float: left;color:#707070">Solutions
+              <span class="caret" style="color: #fff;" ></span></a>
+              <ul class="dropdown-menu">
+                  <li><a href="">Milk Collection</a></li>
+                  <li><a href="">Milk Processing</a></li>
+                  <li><a href="">Cow trading and Breeding</a></li>
+                  <li><a href="">B2B Marketplace</a></li>
+              </ul>
+              </div>
+              <li><a href="{% url 'contactus:showform' %}">Contact us</a></li>&nbsp;
+              <div class="btn-group btn-group-inline"></div>
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#" style="padding-top:12px;float: left;color:#707070">Login
+                <span class="caret" style="color: #fff;" ></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="{% url 'farmerlogin:userlogin' %}">Farmer Login</a></li>
+                    <li><a href="">Financier Login</a></li>
+                    <li><a href="">Admin Login</a></li>
+                    <li><a href="{% url 'farmerlogin:userlogout' %}">Logout</a></li>
+                </ul>
+              </div>
+    
+            <!--<li><a href="">Login</a></li>-->
+            
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    
+
+<h2>Form</h2>
+<!--
+<div class="bg-img" style="float:left; position: sticky;">
+</div>-->
+<div class="sticky"></div>
+  <form method="post" class="container" style="float:right;">
+      {% csrf_token %}
+      
+      <h2><center>Farmer</center>Registration Form</h2><br>
+      <!--
+        {% for field in form %}
+        <p>
+          {{ field.label_tag }}<br>
+          {{ field }}
+          {% for error in field.errors %}
+            <p style="color: red">{{ error }}</p>
+          {% endfor %}
+        </p>
+        {% endfor %}
+      -->
+        <p>{{ form.username.label_tag }}<br>
+        {{ form.username }}</p>
+        {% for error in form.username.errors %}
+        <p style="color: red">{{ error }}</p>
+        {% endfor %}
+
+        <p>{{ form.email.label_tag }}<br>
+        {{ form.email }}</p>
+        {% for error in form.email.errors %}
+        <p style="color: red">{{ error }}</p>
+        {% endfor %}
+
+        <p>{{ farmerform.Mooma_user_id.label_tag }}<br>
+        {{ farmerform.Mooma_user_id }}</p>
+        {% for error in farmerform.Mooma_user_id.errors %}
+        <p style="color: red">{{ error }}</p>
+        {% endfor %}
+
+          
+        <p>{{ farmerform.first_name.label_tag }}<br>
+        {{ farmerform.first_name }}</p>
+        {% for error in farmerform.first_name.errors %}
+        <p style="color: red">{{ error }}</p>
+        {% endfor %}
+
+        <p>{{ farmerform.last_name.label_tag }}<br>
+        {{ farmerform.last_name }}</p>
+        {% for error in farmerform.last_name.errors %}
+        <p style="color: red">{{ error }}</p>
+        {% endfor %}
+
+        <p>{{ farmerform.Address.label_tag }}<br>
+        {{ farmerform.Address }}</p>
+        {% for error in farmerform.Address.errors %}
+        <p style="color: red">{{ error }}</p>
+        {% endfor %}
+        
+  
+        <p>{{ farmerform.Phone_number.label_tag }}
+        (countrycode + phonenumber)<br>
+        {{ farmerform.Phone_number }}</p>
+        {% for error in farmerform.Phone_number.errors %}
+        <p style="color: red">{{ error }}</p>
+        {% endfor %}
+      
+
+        <p>{{ farmerform.Size_of_farm.label_tag }}<br>
+        {{ farmerform.Size_of_farm }}</p>
+        {% for error in farmerform.Size_of_farm.errors %}
+        <p style="color: red">{{ error }}</p>
+        {% endfor %}
+        
+        <p>{{ farmerform.Equipment_used.label_tag }}<br>
+        {{ farmerform.Equipment_used }}</p>
+        {% for error in farmerform.Equipment_used.errors %}
+        <p style="color: red">{{ error }}</p>
+        {% endfor %}
+
+        <span style="font-weight: bold;"><p>Breed Type :<br></p></span>
+        <p>{{ farmerform.Jersey.label_tag }}
+        {{ farmerform.Jersey }}<br>
+        {% for error in farmerform.Jersey.errors %}
+        <p style="color: red">{{ error }}</p>
+        {% endfor %}
+
+        {{ farmerform.Holstein_Friesian.label_tag }}
+        {{ farmerform.Holstein_Friesian }}<br>
+        {% for error in farmerform.Holstein_Friesian.errors %}
+        <p style="color: red">{{ error }}</p>
+        {% endfor %}
+        
+        {{ farmerform.Sahiwal.label_tag }}
+        {{ farmerform.Sahiwal }}<br>
+        {% for error in farmerform.Sahiwal.errors %}
+        <p style="color: red">{{ error }}</p>
+        {% endfor %}
+        
+        {{ farmerform.Khillar.label_tag }}
+        {{ farmerform.Khillar }}<br>
+        {% for error in farmerform.Khillar.errors %}
+        <p style="color: red">{{ error }}</p>
+        {% endfor %}
+
+        {{ farmerform.Gir.label_tag }}
+        {{ farmerform.Gir }}<br></p>
+        {% for error in farmerform.Gir.errors %}
+        <p style="color: red">{{ error }}</p>
+        {% endfor %}
+
+        <p>{{ farmerform.Other_breed.label_tag }}
+        {{ farmerform.Other_breed }}</p>
+        {% for error in farmerform.Other_breed.errors %}
+        <p style="color: red">{{ error }}</p>
+        {% endfor %}
+
+        <p>{{ farmerform.Mixed_breed.label_tag }}
+        {{ farmerform.Mixed_breed }}</p>
+        {% for error in farmerform.Mixed_breed.errors %}
+        <p style="color: red">{{ error }}</p>
+        {% endfor %}
+
+        <p>{{ form.password1.label_tag }}<br>
+        {{ form.password1 }}</p>
+        {% for error in form.password1.errors %}
+        <p style="color: red">{{ error }}</p>
+        {% endfor %}
+
+        <p>{{ form.password2.label_tag }}<br>
+        {{ form.password2 }}</p>
+        {% for error in form.password2.errors %}
+        <p style="color: red">{{ error }}</p>
+        {% endfor %}
+        <!--
+        {% for field in farmerform %}
+        <p>
+          {{ field.label_tag }}<br>
+          {{ field }}
+          {% if field == Equipment_used %}
+          Breed Type
+          {% endif %}
+          {% for error in field.errors %}
+            <p style="color: red">{{ error }}</p>
+          {% endfor %}
+        </p>
+        {% endfor %}
+       
+       {% for field in farmerform %}
+          {% for error in field.errors %}
+            <p style="color: red">{{ error }}</p>
+          {% endfor %}
+        {% endfor %}
+        
+        {% for field in form %}
+        {% for error in field.errors %}
+          <p style="color: red">{{ error }}</p>
+        {% endfor %}
+       {% endfor %} 
+      -->
+      <button type="submit" class="btn">Sign up</button>
+    </form>
+  
+    
+
+<div style="float:center;">sdfghjk</div>
+
+</body>
+</html>

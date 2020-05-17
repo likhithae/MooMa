@@ -10,6 +10,7 @@
         <title>MooMa</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="js/bootstrap-transition.js"></script>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -227,92 +228,75 @@ text-align: center;
   transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
 }
+
+  
 </style>
 </head>
 
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50">
-
+<!--
 <script>
-            var map;
+     
+    function initMap(){
+      var location={lat:33.1,lng:39.43};
+      var hyderabad={lat:17.3850,lng:78.4867};
+      var pune={lat:18.5204,lng:73.8567};
+      var singapore={lat:1.3521,lng:103.8198};
 
-            function initMap() {
-              if (navigator.geolocation) {
-                try {
-                  navigator.geolocation.getCurrentPosition(function(position) {
-                    var myLocation = {
-                      lat: position.coords.latitude,
-                      lng: position.coords.longitude
-                    };
-                    setPos(myLocation);
-                  });
-                } catch (err) {
-                  var myLocation = {
-                     lat: 17.3850,
-                     lng: 78.4867
-                  };
-                  setPos(myLocation);
-                }
-              } else {
-                var myLocation = {
-                    lat: 17.3850,
-                    lng: 78.4867
-                };
-                setPos(myLocation);
-              }
-            }
+      var locations = [
+            ['center', 33.1, 12.43],
+            ['hyderabad', 17.3850, 78.4867,45,40],
+            ['pune', 18.5204, 73.8567,10,29],
+            ['singapore', 1.3521, 103.8198,10,40],
+     ]
+      var item = locations[0];
+      var map = new google.maps.Map(document.getElementById("map"),{
+        zoom:2,
+        center: {lat: item[1], lng: item[2]},
+      });
 
-            function setPos(myLocation) {
-              map = new google.maps.Map(document.getElementById('map'), {
-                center: myLocation,
-                zoom: 10
-              });
+      for (var i = 1; i < locations.length; i++) {
+      var item = locations[i];
+      
+      var marker = new google.maps.Marker({
+      position: {lat: item[1], lng: item[2]},
+      map: map,
+      title: item[0],
+      /*
+      labelContent: item[0],
+      labelAnchor: new google.maps.Point(15, 65),
+      labelClass: "labelsmap", // the CSS class for the label
+      labelInBackground: false,
+      icon: {
+      url: "http://maps.google.com/mapfiles/ms/icons/red-dot.png",  
+    },*/
+   
+    icon: {
+        labelOrigin: new google.maps.Point(item[3],item[4]),
+        url: "http://maps.google.com/mapfiles/ms/icons/red-dot.png",  
+      },
 
-              var service = new google.maps.places.PlacesService(map);
-              service.nearbySearch({
-                location: myLocation,
-                radius: 10000,
-                types: ['Hospitals']
-              }, processResults);
+      label: {
+          text: item[0],
+          /*
+          color: '#00008b',
+          fontSize: '12px',
+          fontWeight:'bold',
+          fillColor: '#707070',
+          border:'1px',
+          paddingbottom:'50px',
+          Anchor: new google.maps.Point(17, 78),*/
+          //color: "#C70E20",
+          color:'#00008b',
+          fontWeight: "bold"
+   }
 
-            }
+      }); 
+      }
 
-            function processResults(results, status, pagination) {
-              if (status !== google.maps.places.PlacesServiceStatus.OK) {
-                return;
-              } else {
-                createMarkers(results);
-
-              }
-            }
-
-            function createMarkers(places) {
-              var bounds = new google.maps.LatLngBounds();
-              var placesList = document.getElementById('places');
-
-              for (var i = 0, place; place = places[i]; i++) {
-                var image = {
-                  url: place.icon,
-                  size: new google.maps.Size(71, 71),
-                  origin: new google.maps.Point(0, 0),
-                  anchor: new google.maps.Point(17, 34),
-                  scaledSize: new google.maps.Size(25, 25)
-                };
-
-                var marker = new google.maps.Marker({
-                  map: map,
-                  icon: image,
-                  title: place.name,
-                  animation: google.maps.Animation.DROP,
-                  position: place.geometry.location
-                });
-
-                bounds.extend(place.geometry.location);
-              }
-              map.fitBounds(bounds);
-            }
+    }
 </script>
-
-    
+-->
 <nav class="navbar navbar-default navbar-fixed-top">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -321,8 +305,11 @@ text-align: center;
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="{% url 'home:home' %}" style="font-family: 'Satisfy', cursive; font-size:25px">MooMa</a>
-    </div>
+     <!--<a class="navbar-brand" href="{% url 'home:home' %}" style="font-family: 'Satisfy', cursive; font-size:25px">MooMa</a>
+      -->
+      <img src="{% static 'images/logo4.png' %}" style="height:59px ; width:59px">
+      <img src="{% static 'images/logo3.png' %}" style="height:60px ; width:145px">
+      </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav navbar-right">
         <li><a href="{% url 'home:home' %}">Home</a></li>
@@ -348,10 +335,12 @@ text-align: center;
 </nav>
 
 
-<div id="map" style="height: 450px;width: 1280px; margin-top: 70px ;"></div>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDhtI9nVQCsQieN9rcn18aLLKA5BFbZzq4&signed_in=true&libraries=places&callback=initMap" async defer></script>
-
-
+<img src="{% static 'images/map.png' %}" style="height: 400px;width: 100%; margin-top: 78px ;">
+<!--
+<script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=API&callback=initMap">
+    </script>
+  -->
 <div id="contact" class="contact-box">
     <div class="container" style="align:center;">
         <center><h3 style=" color: #2c3e50; font-size: 25px; padding-bottom: 0px">CONTACT  US </h3></center>

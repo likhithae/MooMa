@@ -1,0 +1,170 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    {% load static %}
+
+<title>MooMa</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="js/bootstrap-transition.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link href='https://fonts.googleapis.com/css?family=Satisfy' rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.5.0/css/all.css' integrity='sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU' crossorigin='anonymous'>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<style>
+    
+body, html {
+  height: 100%;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.bg-img {
+  /* The image used */
+  background-image: url("{% static 'images/farmerbg.png' %}");
+
+  min-height: 380px;
+  height: 500px;
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+/* Add styles to the form container */
+.container {
+  position: absolute;
+  right: 0;
+  margin-top: 40px;
+  margin-right: 100px;
+  max-width: 300px;
+  height: 410px;
+  padding: 40px;
+  padding-top: 10px;
+  padding-right:10px;
+  background-color: white;
+}
+
+/* Full-width input fields */
+input[type=text], input[type=password] {
+  width: 85%;
+  padding: 10px;
+  margin: 5px 0 22px 0;
+  border: none;
+  background: #f1f1f1;
+}
+
+input[type=text]:focus, input[type=password]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+/* Set a style for the submit button */
+.btn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  width: 85%;
+  opacity: 0.9;
+}
+
+.btn:hover {
+  opacity: 1;
+}
+</style>
+</head>
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50">
+
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <img src="{% static 'images/logo4.png' %}" style="height:59px ; width:59px">
+          <img src="{% static 'images/logo3.png' %}" style="height:60px ; width:145px">
+          </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+          <ul class="nav navbar-nav navbar-right" class="list-inline">
+            <li><a href="{% url 'home:home' %}">Home</a></li>
+            <li><a href="{% url 'aboutus:aboutus' %}">About us</a></li>
+            <li><a href="{% url 'technology:technology' %}">Technology</a></li>&nbsp;&nbsp;
+            <div class="btn-group btn-group-inline">
+              
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#" style="padding-top:12px;float: left;color:#707070">Solutions
+              <span class="caret" style="color: #fff;" ></span></a>
+              <ul class="dropdown-menu">
+                  <li><a href="">Milk Collection</a></li>
+                  <li><a href="">Milk Processing</a></li>
+                  <li><a href="">Cow trading and Breeding</a></li>
+                  <li><a href="">B2B Marketplace</a></li>
+              </ul>
+              </div>
+              <li><a href="{% url 'contactus:showform' %}">Contact us</a></li>&nbsp;
+              <div class="btn-group btn-group-inline"></div>
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#" style="padding-top:12px;float: left;color:#707070">Login
+                <span class="caret" style="color: #fff;" ></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="{% url 'farmerlogin:userlogin' %}">Farmer Login</a></li>
+                    <li><a href="">Financier Login</a></li>
+                    <li><a href="">Admin Login</a></li>
+                    <li><a href="{% url 'farmerlogin:userlogout' %}">Logout</a></li>
+                </ul>
+              </div>
+    
+            
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    
+
+<h2>Form</h2>
+<div class="bg-img">
+  <form action="{% url 'farmerlogin:userlogin' %}" method="post" class="container">
+    {% csrf_token %}
+
+      <h2>Farmer Login</h2>
+  
+      <label for="username"><b>Username</b></label>
+      <input type="text" placeholder="Enter  Username" name="username" required>
+  
+      <label for="psw"><b>Password</b></label>
+      <input type="password" placeholder="Enter Password" name="password" required>
+      {% if error %}
+                <h4 style="color:red;font-size:15px ;">
+                    {{ error }}
+                </h4>
+      {% endif %}
+  
+      <button type="submit" class="btn">Login</button><br>
+      <label><br>
+        <!--
+      <a href="{% url 'farmerlogin:signup' %}">Forgot Password?</a></label>-->
+      <label>
+        Don't have an account yet? <a href="{% url 'farmerlogin:signup' %}">Sign up</a></label>
+    </form>
+    
+  </div>
+
+  
+
+
+</body>
+</html>

@@ -1,0 +1,197 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    {% load static %}
+
+<title>MooMa</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="js/bootstrap-transition.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link href='https://fonts.googleapis.com/css?family=Satisfy' rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.5.0/css/all.css' integrity='sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU' crossorigin='anonymous'>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+<style>
+  * {
+    box-sizing: border-box;
+  }
+  .menu {
+    float:left;
+    width:20%;
+    text-align:center;
+  }
+  .menu a {
+    background-color:#e5e5e5;
+    padding:8px;
+    margin-top:7px;
+    display:block;
+    width:100%;
+    color:black;
+  }
+  .main {
+    float:left;
+    width:60%;
+    padding:0 20px;
+  }
+  .right {
+    background-color:#e5e5e5;
+    float:left;
+    width:20%;
+    padding:15px;
+    margin-top:7px;
+    text-align:center;
+  }
+  
+  @media only screen and (max-width:620px) {
+    /* For mobile phones: */
+    .menu, .main, .right {
+      width:100%;
+    }
+  }
+  </style>
+</head>
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50">
+
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <!--<a class="navbar-brand" href="{% url 'home:home' %}" style="font-family: 'Satisfy', cursive; font-size:25px">MooMa</a>
+          -->
+          <img src="{% static 'images/logo4.png' %}" style="height:59px ; width:59px">
+          <img src="{% static 'images/logo3.png' %}" style="height:60px ; width:145px">
+          </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+          <ul class="nav navbar-nav navbar-right" class="list-inline">
+            <li><a href="{% url 'home:home' %}">Home</a></li>
+            <li><a href="{% url 'aboutus:aboutus' %}">About us</a></li>
+            <li><a href="{% url 'technology:technology' %}">Technology</a></li>&nbsp;&nbsp;
+            <!--<li><a href="">Solutions</a></li>-->
+            <div class="btn-group btn-group-inline">
+              
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#" style="padding-top:12px;float: left;color:#707070">Solutions
+              <span class="caret" style="color: #fff;" ></span></a>
+              <ul class="dropdown-menu">
+                  <li><a href="">Milk Collection</a></li>
+                  <li><a href="">Milk Processing</a></li>
+                  <li><a href="">Cow trading and Breeding</a></li>
+                  <li><a href="">B2B Marketplace</a></li>
+              </ul>
+              </div>
+              <li><a href="{% url 'contactus:showform' %}">Contact us</a></li>&nbsp;
+              <div class="btn-group btn-group-inline"></div>
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#" style="padding-top:12px;float: left;color:#707070">Login
+                <span class="caret" style="color: #fff;" ></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="{% url 'farmerlogin:userlogin' %}">Farmer Login</a></li>
+                    <li><a href="">Financier Login</a></li>
+                    <li><a href="">Admin Login</a></li>
+                    <li><a href="{% url 'farmerlogin:userlogout' %}">Logout</a></li>
+                </ul>
+              </div>
+    
+            <!--<li><a href="">Login</a></li>-->
+            
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+   
+    <nav class="navbar navbar-inverse" style="padding-top:65px;font-size:15px" id="nav">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myDashboard">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>                        
+          </button>
+          <a class="navbar-brand" href="#">Dashboard</a>
+        </div>
+        <div class="collapse navbar-collapse" id="myDashboard">
+        <ul class="nav navbar-nav navbar">
+          <li><a href="{% url 'visual:visual' %}">System Health</a></li>
+          <li><a href="{% url 'visual:quantity' %}">Milk Quantity</a></li>
+          <li><a href="{% url 'visual:quality' %}">Milk Quality</a></li>
+          <li><a href="{% url 'visual:cowhealth' %}">Cow Health</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="{% url 'visual:profile' %}"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
+          <li><a href="{% url 'farmerlogin:userlogout' %}"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+        </ul>  
+      </div>
+      </div>
+    </nav>
+      <br>
+      <div class="container" >
+      <!--
+
+<br>
+<h2>Welcome {{ user.username }}</h2>
+<center><span style="font-size: 20px;padding-left:10px">Cow Health</span></center>
+<div class="overflow:auto" style="padding:30px;padding-left:50px;display:inline-block;width:30%;float:left;">
+  <div class="row">
+    <a style="text-decoration:none" href="{% url 'visual:visual' %}"><div class="col" style="padding-bottom:2px;font-size:25px;">System Health</div></a>
+    <a style="text-decoration:none" href="{% url 'visual:quantity' %}"><div class="col" style="padding-bottom:2px;font-size:25px;">Milk Quantity</div></a>
+    <a style="text-decoration:none" href="{% url 'visual:quality' %}"><div class="col" style="font-size:25px;">Milk Quality</div></a>
+        <div style="padding-left:50px;font-size:17px;">
+        <li>PH</li>
+        <li>Fat</li>
+        <li>Lactometer</li>
+        <li>Conductivity</li>
+        </div>
+    <a style="text-decoration:none" href=""><div class="col" style="padding-top:2px;font-size:25px;"> Cow Health</div></a>
+      <div style="padding-left:50px;font-size:17px;">
+      <li>Temperature</li>
+      <li>Pulse Rate</li>
+      <li>Ambient Temperature</li>
+      <li>Ambient Humidity</li>
+      </div>
+  </div>
+</div>
+
+<div class="right" style="display:inline-block;width:65%;;float:right;">
+
+    <iframe width="45%" height="210" style="border: 1px solid #fff;float:left;padding-bottom: 40px;" src="https://thingspeak.com/channels/1058269/charts/1?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&title=Ear+Canal+Temperature&type=line"></iframe>
+    <iframe width="45%" height="210" style="border: 1px solid #fff;float:right;padding-bottom: 40px;" src="https://thingspeak.com/channels/1058269/charts/2?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&title=Pulse+Rate+%28Neck+Strap%29&type=line"></iframe>
+    <iframe width="45%" height="210" style="border: 1px solid #fff;float: left;" src="https://thingspeak.com/channels/1058269/charts/3?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&title=Ambient+Temperature+%28%C2%B0C%29&type=line"></iframe>
+    <iframe width="45%" height="210" style="border: 1px solid #fff;float:right;" src="https://thingspeak.com/channels/1058269/charts/4?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&title=Ambient+Humidity+%25&type=line"></iframe>
+    
+</div>
+-->
+<center><h2>Cow Health</h2></center><br><br>
+<div class="row">
+  <div class="col-sm-6">
+    <iframe width="450" height="260" style="border: 1px solid #fff;" src="https://thingspeak.com/channels/1058269/charts/1?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&title=Ear+Canal+Temperature&type=line"></iframe>
+  </div>
+  <div class="col-sm-6">
+    <iframe width="450" height="260" style="border: 1px solid #fff;" src="https://thingspeak.com/channels/1058269/charts/2?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&title=Pulse+Rate+%28Neck+Strap%29&type=line"></iframe>
+  </div>
+</div><br><br>
+<div class="row"></div>
+  <div class="col-sm-6">
+    <iframe width="450" height="260" style="border: 1px solid #fff;" src="https://thingspeak.com/channels/1058269/charts/3?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&title=Ambient+Temperature+%28%C2%B0C%29&type=line"></iframe>
+  </div>
+  <div class="col-sm-6">
+    <iframe width="450" height="260" style="border: 1px solid #fff;" src="https://thingspeak.com/channels/1058269/charts/4?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&title=Ambient+Humidity+%25&type=line"></iframe>
+
+  </div>
+</div>
+</div>
+
+</div>
+</body>
+</html>

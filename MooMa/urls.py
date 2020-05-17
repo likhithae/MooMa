@@ -22,4 +22,6 @@ urlpatterns = [
     path('showform/', include('contactus.urls')),
     path('aboutus/', include('aboutus.urls')),
     path('technology/', include('technology.urls')),
+    path('farmerlogin/', include('farmerlogin.urls')),
+    path('visual/', include('visual.urls')),
 ]
