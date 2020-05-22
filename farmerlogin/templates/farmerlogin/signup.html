@@ -36,13 +36,14 @@ body, html {
   right: 0;
   margin: 30px;
   max-width:320px;
-  height: 1300px;
+  height: auto;
   padding-right: 55px;
+  padding-bottom: 10px;
   background-color: white;
 }
 
 /* Full-width input fields */
-input[type=text], input[type=password] {
+input[type=text], input[type=password], .myclass,.phoneclass {
   width: 100%;
   padding: 15px;
   margin: 5px 0 22px 0;
@@ -50,11 +51,26 @@ input[type=text], input[type=password] {
   background: #f1f1f1;
 }
 
-input[type=text]:focus, input[type=password]:focus{
+.dateclass{
+  width: auto;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-left:11px;
+  padding-right: 11px;
+  margin: 5px 0 12px 0;
+  border: none;
+  background: #f1f1f1;
+}
+
+input[type=text]:focus, input[type=password]:focus,.phoneclass:focus{
   background-color: #ddd;
   outline: none;
 }
 
+.myclass:focus,.dateclass:focus{
+  /*background-color: #ddd;*/
+  outline: none;
+}
 
 /* Set a style for the submit button */
 .btn {
@@ -85,67 +101,108 @@ div.sticky {
   position: fixed;
   background-attachment: fixed;
 }
+
+.nav-tabs li a {
+      color: #777;
+  }
+
+  .navbar {
+      font-family: Montserrat, sans-serif;
+      margin-bottom: 0;
+      /*background-color: #2b669a;
+      background: -webkit-linear-gradient(to right, #FFFFFF, #FFFFFF);
+      background: linear-gradient(to right, #FFFFFF, #FFFFFF);
+      */
+      background:#FEFCFF;
+      border: 0;
+      font-size: 15px !important;
+      font-weight: bold;
+      /*letter-spacing: 1px;
+      opacity: 0.8;*/
+      padding-top: 5px;
+      padding-bottom: 5px;
+  }
+  .navbar li a, .navbar .navbar-brand {
+      color: #707070 !important;
+  }
+  .navbar-nav li a:hover {
+      color: #29292c !important;
+  }
+  .navbar-nav li.active a {
+      color: #fff !important;
+      background-color: #29292c !important;
+  }
+  .navbar-default .navbar-toggle {
+      border-color: transparent;
+  }
+  .dropdown-toggle li a:hover {
+      color: #29292c !important;
+      border: none;
+   outline: none;
+   text-decoration: none;
+  }
+  .dropdown-toggle:hover,
+.dropdown-toggle:focus {
+  text-decoration: none;
+  color: #29292c !important;
+}
+  .dropdown-menu li a {
+      color: #000 !important;
+  }
+  .dropdown-menu li a:hover {
+      background-color: red !important;
+  }
 </style>
 </head>
-<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50">
 
-    <nav class="navbar navbar-default navbar-fixed-top">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <!--<a class="navbar-brand" href="{% url 'home:home' %}" style="font-family: 'Satisfy', cursive; font-size:25px">MooMa</a>
-          -->
-          <img src="{% static 'images/logo4.png' %}" style="height:59px ; width:59px">
-          <img src="{% static 'images/logo3.png' %}" style="height:60px ; width:145px">
-          </div>
-        <div class="collapse navbar-collapse" id="myNavbar">
-          <ul class="nav navbar-nav navbar-right" class="list-inline">
-            <li><a href="{% url 'home:home' %}">Home</a></li>
-            <li><a href="{% url 'aboutus:aboutus' %}">About us</a></li>
-            <li><a href="{% url 'technology:technology' %}">Technology</a></li>&nbsp;&nbsp;
-            <!--<li><a href="">Solutions</a></li>-->
-            <div class="btn-group btn-group-inline">
-              
-              <a class="dropdown-toggle" data-toggle="dropdown" href="#" style="padding-top:12px;float: left;color:#707070">Solutions
-              <span class="caret" style="color: #fff;" ></span></a>
-              <ul class="dropdown-menu">
-                  <li><a href="">Milk Collection</a></li>
-                  <li><a href="">Milk Processing</a></li>
-                  <li><a href="">Cow trading and Breeding</a></li>
-                  <li><a href="">B2B Marketplace</a></li>
-              </ul>
-              </div>
-              <li><a href="{% url 'contactus:showform' %}">Contact us</a></li>&nbsp;
-              <div class="btn-group btn-group-inline"></div>
-              <a class="dropdown-toggle" data-toggle="dropdown" href="#" style="padding-top:12px;float: left;color:#707070">Login
-                <span class="caret" style="color: #fff;" ></span></a>
-                <ul class="dropdown-menu">
-                    <li><a href="{% url 'farmerlogin:userlogin' %}">Farmer Login</a></li>
-                    <li><a href="">Financier Login</a></li>
-                    <li><a href="">Admin Login</a></li>
-                    <li><a href="{% url 'farmerlogin:userlogout' %}">Logout</a></li>
-                </ul>
-              </div>
-    
-            <!--<li><a href="">Login</a></li>-->
-            
-            </li>
-          </ul>
-        </div>
+<body>
+
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>                        
+        </button>
+        <img src="{% static 'images/logo4.png' %}" style="height:59px ; width:59px">
+        <img src="{% static 'images/logo3.png' %}" style="height:60px ; width:145px">
       </div>
-    </nav>
+      <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="{% url 'home:home' %}">Home</a></li>
+          <li><a href="{% url 'aboutus:aboutus' %}">About us</a></li>
+          <li><a href="{% url 'technology:technology' %}">Technology</a></li>
+          <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Solutions<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="">Milk Collection</a></li>
+              <li><a href="">Milk Processing</a></li>
+              <li><a href="">Cow trading and Breeding</a></li>
+              <li><a href="">B2B Marketplace</a></li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Login<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="{% url 'farmerlogin:userlogin' %}">Farmer Login</a></li>
+              <li><a href="">Financier Login</a></li>
+              <li><a href="">Admin Login</a></li>
+              <li><a href="{% url 'farmerlogin:userlogout' %}">Logout</a></li>
+            </ul>
+          </li>
+          <li><a href="{% url 'contactus:showform' %}">Contact us</a></li>&nbsp;
+        </ul>
+      </div>
+    </div>
+  </nav>
     
-
 <h2>Form</h2>
 <!--
 <div class="bg-img" style="float:left; position: sticky;">
 </div>-->
 <div class="sticky"></div>
-  <form method="post" class="container" style="float:right;">
+  <form method="post" class="container"  id="FarmerForm" style="float:right;" data-districts-url="{% url 'farmerlogin:load_districts' %}" data-subdistricts-url="{% url 'farmerlogin:load_subdistricts' %}"  data-pincode-url="{% url 'farmerlogin:load_pincode' %}" novalidate>
       {% csrf_token %}
       
       <h2><center>Farmer</center>Registration Form</h2><br>
@@ -190,6 +247,31 @@ div.sticky {
         {% for error in farmerform.last_name.errors %}
         <p style="color: red">{{ error }}</p>
         {% endfor %}
+        
+        
+        <p>{{ farmerform.state.label_tag }}<br>
+        {{ farmerform.state }}</p>
+        {% for error in farmerform.state.errors %}
+        <p style="color: red">{{ error }}</p>
+        {% endfor %}
+     
+        <p>{{ farmerform.district.label_tag }}<br>
+        {{ farmerform.district }}</p>
+        {% for error in farmerform.district.errors %}
+        <p style="color: red">{{ error }}</p>
+        {% endfor %}
+             
+        <p>{{ farmerform.subdistrict.label_tag }}<br>
+        {{ farmerform.subdistrict }}</p>
+        {% for error in farmerform.subdistrict.errors %}
+        <p style="color: red">{{ error }}</p>
+        {% endfor %}
+
+        <p>{{ farmerform.pincode.label_tag }}<br>
+        <span style="width: 100%;">{{ farmerform.pincode }}</span></p>
+        {% for error in farmerform.pincode.errors %}
+        <p style="color: red">{{ error }}</p>
+        {% endfor %}
 
         <p>{{ farmerform.Address.label_tag }}<br>
         {{ farmerform.Address }}</p>
@@ -198,8 +280,8 @@ div.sticky {
         {% endfor %}
         
   
-        <p>{{ farmerform.Phone_number.label_tag }}
-        (countrycode + phonenumber)<br>
+        <p>{{ farmerform.Phone_number.label_tag }}<br>
+        Please enter along with countrycode<br>
         {{ farmerform.Phone_number }}</p>
         {% for error in farmerform.Phone_number.errors %}
         <p style="color: red">{{ error }}</p>
@@ -218,32 +300,38 @@ div.sticky {
         <p style="color: red">{{ error }}</p>
         {% endfor %}
 
+        <p>{{ farmerform.Installed_date.label_tag }}<br>
+        {{ farmerform.Installed_date }}</p>
+        {% for error in farmerform.Installed_date.errors %}
+        <p style="color: red">{{ error }}</p>
+        {% endfor %}<br>
+
         <span style="font-weight: bold;"><p>Breed Type :<br></p></span>
-        <p>{{ farmerform.Jersey.label_tag }}
+        <p>{{ farmerform.Jersey.label_tag }}&nbsp;
         {{ farmerform.Jersey }}<br>
         {% for error in farmerform.Jersey.errors %}
         <p style="color: red">{{ error }}</p>
         {% endfor %}
 
-        {{ farmerform.Holstein_Friesian.label_tag }}
+        {{ farmerform.Holstein_Friesian.label_tag }}&nbsp;
         {{ farmerform.Holstein_Friesian }}<br>
         {% for error in farmerform.Holstein_Friesian.errors %}
         <p style="color: red">{{ error }}</p>
         {% endfor %}
         
-        {{ farmerform.Sahiwal.label_tag }}
+        {{ farmerform.Sahiwal.label_tag }}&nbsp;
         {{ farmerform.Sahiwal }}<br>
         {% for error in farmerform.Sahiwal.errors %}
         <p style="color: red">{{ error }}</p>
         {% endfor %}
         
-        {{ farmerform.Khillar.label_tag }}
+        {{ farmerform.Khillar.label_tag }}&nbsp;
         {{ farmerform.Khillar }}<br>
         {% for error in farmerform.Khillar.errors %}
         <p style="color: red">{{ error }}</p>
         {% endfor %}
 
-        {{ farmerform.Gir.label_tag }}
+        {{ farmerform.Gir.label_tag }}&nbsp;
         {{ farmerform.Gir }}<br></p>
         {% for error in farmerform.Gir.errors %}
         <p style="color: red">{{ error }}</p>
@@ -299,10 +387,61 @@ div.sticky {
        {% endfor %} 
       -->
       <button type="submit" class="btn">Sign up</button>
-    </form>
+  </form>
   
-    
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script>
+    $("#id_state").change(function () {
+      var url = $("#FarmerForm").attr("data-districts-url");
+      var stateId = $(this).val();
 
+      $.ajax({
+        url: url,
+        data: {
+          'state': stateId
+        },
+        success: function (data) {
+          $("#id_district").html(data);
+        }
+      });
+
+    });
+  </script>
+  <script>
+    $("#id_district").change(function () {
+      var url = $("#FarmerForm").attr("data-subdistricts-url");
+      var districtId = $(this).val();
+
+      $.ajax({
+        url: url,
+        data: {
+          'district': districtId
+        },
+        success: function (data) {
+          $("#id_subdistrict").html(data);
+        }
+      });
+
+    });
+  </script>
+
+<script>
+  $("#id_subdistrict").change(function () {
+    var url = $("#FarmerForm").attr("data-pincode-url");
+    var subdistrictId = $(this).val();
+
+    $.ajax({
+      url: url,
+      data: {
+        'subdistrict': subdistrictId
+      },
+      success: function (data) {
+        $("#id_pincode").html(data);
+      }
+    });
+
+  });
+</script>
 <div style="float:center;">sdfghjk</div>
 
 </body>

@@ -12,7 +12,7 @@ from django.core.mail import EmailMessage
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
-from home.models import FarmerProfile
+from home.models import FarmerProfile,State,District,SubDistrict,Pincode
 #from home.models import FarmerLogin
 
 
@@ -130,3 +130,21 @@ def userlogin(request):
                         context={"form":form,"error":error})
 
 
+
+def load_districts(request):
+    state_id = request.GET.get('state')
+    districts = District.objects.filter(state_id=state_id).order_by('name')
+
+    return render(request, 'farmerlogin/dropdown.html', {'districts': districts})
+
+def load_subdistricts(request):
+    district_id = request.GET.get('district')
+    subdistricts = SubDistrict.objects.filter(district_id=district_id).order_by('name')
+
+    return render(request, 'farmerlogin/dropdown1.html', {'subdistricts':subdistricts})
+
+def load_pincode(request):
+    subdistrict_id = request.GET.get('subdistrict')
+    pincodes = Pincode.objects.filter(subdistrict_id=subdistrict_id).order_by('name')
+
+    return render(request, 'farmerlogin/dropdown2.html', {'pincodes':pincodes})
