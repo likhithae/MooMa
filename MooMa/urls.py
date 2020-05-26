@@ -24,4 +24,6 @@ urlpatterns = [
     path('technology/', include('technology.urls')),
     path('farmerlogin/', include('farmerlogin.urls')),
     path('visual/', include('visual.urls')),
+    path('financierlogin/', include('financierlogin.urls')),
+    path('visualfinancier/', include('visualfinancier.urls')),
 ]

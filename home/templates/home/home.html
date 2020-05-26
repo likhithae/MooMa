@@ -259,7 +259,7 @@ text-align: center;
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">Login<span class="caret"></span></a>
             <ul class="dropdown-menu">
               <li><a href="{% url 'farmerlogin:userlogin' %}">Farmer Login</a></li>
-              <li><a href="">Financier Login</a></li>
+              <li><a href="{% url 'financierlogin:userlogin' %}">Financier Login</a></li>
               <li><a href="">Admin Login</a></li>
               <li><a href="{% url 'farmerlogin:userlogout' %}">Logout</a></li>
             </ul>

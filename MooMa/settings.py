@@ -25,8 +25,7 @@ SECRET_KEY = 'cc68a7*-os0xc%l(usixa#_=b!0%si$zo520z&l(_q8*)vx=ll'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = ["likhithae.pythonanywhere.com","localhost"]
 # Application definition
 
 INSTALLED_APPS = [
@@ -44,6 +43,9 @@ INSTALLED_APPS = [
     'technology',
     'farmerlogin',
     'visual',
+    'financierlogin',
+    'visualfinancier',
+    
 ]
 
 MIDDLEWARE = [
@@ -130,4 +132,7 @@ EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 
-LOGIN_REDIRECT_URL = 'visual:visual'
+#AUTH_USER_MODEL = 'home.CustomUser'
+#AUTH_USER_MODEL = 'financierlogin.User'
+
+#LOGIN_REDIRECT_URL = 'visual:visual'

@@ -12,7 +12,7 @@ from django.core.mail import EmailMessage
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
-from home.models import FarmerProfile,State,District,SubDistrict,Pincode
+from home.models import FarmerProfile,State,District,SubDistrict,Pincode,Usertype
 #from home.models import FarmerLogin
 
 
@@ -50,7 +50,10 @@ def signup(request):
             profile = farmerform.save(commit=False)
             profile.user=user
             profile.save()
-            
+            temp = Usertype.objects.get_or_create(
+                        user = user,
+                        is_farmer = True,
+                        )
             #farmerform.save()
             current_site = get_current_site(request)
             mail_subject = 'Activate your MooMa account.'
@@ -87,6 +90,7 @@ def activate(request, uidb64, token):
         user.is_active = True
         farmer = FarmerProfile.objects.get(user=user)
         farmer.email_confirmed = True
+        #farmer.is_farmer = True
         farmer.save()
         #user.is_valid = True
         user.save()
@@ -112,7 +116,10 @@ def userlogin(request):
                 username = form.cleaned_data.get('username')
                 password = form.cleaned_data.get('password')
                 user = authenticate(username=username, password=password)
-                if user is not None:
+                #print(FarmerProfile.objects.get(user=user)
+                #u = FarmerProfile.objects.get(user=user)
+                u = Usertype.objects.get(user=user)
+                if user is not None and u.is_farmer:
                     login(request, user)
                     #return HttpResponse("You are now logged in as {username}")
                     return redirect('visual:visual')

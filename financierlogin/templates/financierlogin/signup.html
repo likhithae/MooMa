@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% load static %}
+
+<title>MooMa</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="js/bootstrap-transition.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link href='https://fonts.googleapis.com/css?family=Satisfy' rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.5.0/css/all.css' integrity='sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU' crossorigin='anonymous'>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<style>
+    
+body, html {
+  height: 100%;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+
+/* Add styles to the form container */
+.container {
+  position: absolute;
+  float: right;
+  right: 0;
+  margin: 30px;
+  max-width:320px;
+  height: auto;
+  padding-right: 55px;
+  padding-bottom: 10px;
+  background-color: white;
+}
+
+/* Full-width input fields */
+input[type=text], input[type=password], .myclass,.phoneclass {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  border: none;
+  background: #f1f1f1;
+}
+
+.dateclass{
+  width: auto;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-left:11px;
+  padding-right: 11px;
+  margin: 5px 0 12px 0;
+  border: none;
+  background: #f1f1f1;
+}
+
+input[type=text]:focus, input[type=password]:focus,.phoneclass:focus{
+  background-color: #ddd;
+  outline: none;
+}
+
+.myclass:focus,.dateclass:focus{
+  /*background-color: #ddd;*/
+  outline: none;
+}
+
+/* Set a style for the submit button */
+.btn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}
+
+.btn:hover {
+  opacity: 1;
+}
+
+div.sticky {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  background-image: url("{% static 'images/im3_1.png' %}");
+  height: 100%;
+  width:65%;
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: fixed;
+  background-attachment: fixed;
+}
+
+.nav-tabs li a {
+      color: #777;
+  }
+
+  .navbar {
+      font-family: Montserrat, sans-serif;
+      margin-bottom: 0;
+      /*background-color: #2b669a;
+      background: -webkit-linear-gradient(to right, #FFFFFF, #FFFFFF);
+      background: linear-gradient(to right, #FFFFFF, #FFFFFF);
+      */
+      background:#FEFCFF;
+      border: 0;
+      font-size: 15px !important;
+      font-weight: bold;
+      /*letter-spacing: 1px;
+      opacity: 0.8;*/
+      padding-top: 5px;
+      padding-bottom: 5px;
+  }
+  .navbar li a, .navbar .navbar-brand {
+      color: #707070 !important;
+  }
+  .navbar-nav li a:hover {
+      color: #29292c !important;
+  }
+  .navbar-nav li.active a {
+      color: #fff !important;
+      background-color: #29292c !important;
+  }
+  .navbar-default .navbar-toggle {
+      border-color: transparent;
+  }
+  .dropdown-toggle li a:hover {
+      color: #29292c !important;
+      border: none;
+   outline: none;
+   text-decoration: none;
+  }
+  .dropdown-toggle:hover,
+.dropdown-toggle:focus {
+  text-decoration: none;
+  color: #29292c !important;
+}
+  .dropdown-menu li a {
+      color: #000 !important;
+  }
+  .dropdown-menu li a:hover {
+      background-color: red !important;
+  }
+</style>
+</head>
+
+<body>
+
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>                        
+        </button>
+        <img src="{% static 'images/logo4.png' %}" style="height:59px ; width:59px">
+        <img src="{% static 'images/logo3.png' %}" style="height:60px ; width:145px">
+      </div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="{% url 'home:home' %}">Home</a></li>
+          <li><a href="{% url 'aboutus:aboutus' %}">About us</a></li>
+          <li><a href="{% url 'technology:technology' %}">Technology</a></li>
+          <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Solutions<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="">Milk Collection</a></li>
+              <li><a href="">Milk Processing</a></li>
+              <li><a href="">Cow trading and Breeding</a></li>
+              <li><a href="">B2B Marketplace</a></li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Login<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="{% url 'farmerlogin:userlogin' %}">Farmer Login</a></li>
+              <li><a href="{% url 'financierlogin:userlogin' %}">Financier Login</a></li>
+              <li><a href="">Admin Login</a></li>
+              <li><a href="{% url 'farmerlogin:userlogout' %}">Logout</a></li>
+            </ul>
+          </li>
+          <li><a href="{% url 'contactus:showform' %}">Contact us</a></li>&nbsp;
+        </ul>
+      </div>
+    </div>
+  </nav>
+    
+<h2>Form</h2>
+<!--
+<div class="bg-img" style="float:left; position: sticky;">
+</div>-->
+<div class="sticky"></div>
+  <form method="post" class="container"  id="FinancierForm" style="float:right;" data-districts-url="{% url 'financierlogin:load_districts' %}" data-subdistricts-url="{% url 'financierlogin:load_subdistricts' %}"  data-pincode-url="{% url 'financierlogin:load_pincode' %}" novalidate>
+      {% csrf_token %}
+      
+      <h2><center>Financier</center>Registration Form</h2><br>
+ 
+        <p>{{ form.username.label_tag }}<br>
+        {{ form.username }}</p>
+        {% for error in form.username.errors %}
+        <p style="color: red">{{ error }}</p>
+        {% endfor %}
+
+        <p>{{ form.email.label_tag }}<br>
+        {{ form.email }}</p>
+        {% for error in form.email.errors %}
+        <p style="color: red">{{ error }}</p>
+        {% endfor %}
+
+        <p>{{ financierform.Mooma_user_id.label_tag }}<br>
+        {{ financierform.Mooma_user_id }}</p>
+        {% for error in financierform.Mooma_user_id.errors %}
+        <p style="color: red">{{ error }}</p>
+        {% endfor %}
+
+          
+        <p>{{ financierform.first_name.label_tag }}<br>
+        {{ financierform.first_name }}</p>
+        {% for error in financierform.first_name.errors %}
+        <p style="color: red">{{ error }}</p>
+        {% endfor %}
+
+        <p>{{ financierform.last_name.label_tag }}<br>
+        {{ financierform.last_name }}</p>
+        {% for error in financierform.last_name.errors %}
+        <p style="color: red">{{ error }}</p>
+        {% endfor %}
+        
+        
+        <p>{{ financierform.state.label_tag }}<br>
+        {{ financierform.state }}</p>
+        {% for error in financierform.state.errors %}
+        <p style="color: red">{{ error }}</p>
+        {% endfor %}
+     
+        <p>{{ financierform.district.label_tag }}<br>
+        {{ financierform.district }}</p>
+        {% for error in financierform.district.errors %}
+        <p style="color: red">{{ error }}</p>
+        {% endfor %}
+             
+        <p>{{ financierform.subdistrict.label_tag }}<br>
+        {{ financierform.subdistrict }}</p>
+        {% for error in financierform.subdistrict.errors %}
+        <p style="color: red">{{ error }}</p>
+        {% endfor %}
+
+        <p>{{ financierform.pincode.label_tag }}<br>
+        <span style="width: 100%;">{{ financierform.pincode }}</span></p>
+        {% for error in financierform.pincode.errors %}
+        <p style="color: red">{{ error }}</p>
+        {% endfor %}
+
+        <p>{{ financierform.Address.label_tag }}<br>
+        {{ financierform.Address }}</p>
+        {% for error in financierform.Address.errors %}
+        <p style="color: red">{{ error }}</p>
+        {% endfor %}
+        
+  
+        <p>{{ financierform.Phone_number.label_tag }}<br>
+        Please enter along with countrycode<br>
+        {{ financierform.Phone_number }}</p>
+        {% for error in financierform.Phone_number.errors %}
+        <p style="color: red">{{ error }}</p>
+        {% endfor %}
+      
+
+        <p>{{ financierform.Size_of_farm.label_tag }}<br>
+        {{ financierform.Size_of_farm }}</p>
+        {% for error in financierform.Size_of_farm.errors %}
+        <p style="color: red">{{ error }}</p>
+        {% endfor %}
+        
+        <p>{{ financierform.Equipment_used.label_tag }}<br>
+        {{ financierform.Equipment_used }}</p>
+        {% for error in financierform.Equipment_used.errors %}
+        <p style="color: red">{{ error }}</p>
+        {% endfor %}
+
+        <p>{{ financierform.Installed_date.label_tag }}<br>
+        {{ financierform.Installed_date }}</p>
+        {% for error in financierform.Installed_date.errors %}
+        <p style="color: red">{{ error }}</p>
+        {% endfor %}<br>
+
+        <span style="font-weight: bold;"><p>Breed Type :<br></p></span>
+        <p>{{ financierform.Jersey.label_tag }}&nbsp;
+        {{ financierform.Jersey }}<br>
+        {% for error in financierform.Jersey.errors %}
+        <p style="color: red">{{ error }}</p>
+        {% endfor %}
+
+        {{ financierform.Holstein_Friesian.label_tag }}&nbsp;
+        {{ financierform.Holstein_Friesian }}<br>
+        {% for error in financierform.Holstein_Friesian.errors %}
+        <p style="color: red">{{ error }}</p>
+        {% endfor %}
+        
+        {{ financierform.Sahiwal.label_tag }}&nbsp;
+        {{ financierform.Sahiwal }}<br>
+        {% for error in financierform.Sahiwal.errors %}
+        <p style="color: red">{{ error }}</p>
+        {% endfor %}
+        
+        {{ financierform.Khillar.label_tag }}&nbsp;
+        {{ financierform.Khillar }}<br>
+        {% for error in financierform.Khillar.errors %}
+        <p style="color: red">{{ error }}</p>
+        {% endfor %}
+
+        {{ financierform.Gir.label_tag }}&nbsp;
+        {{ financierform.Gir }}<br></p>
+        {% for error in financierform.Gir.errors %}
+        <p style="color: red">{{ error }}</p>
+        {% endfor %}
+
+        <p>{{ financierform.Other_breed.label_tag }}
+        {{ financierform.Other_breed }}</p>
+        {% for error in financierform.Other_breed.errors %}
+        <p style="color: red">{{ error }}</p>
+        {% endfor %}
+
+        <p>{{ financierform.Mixed_breed.label_tag }}
+        {{ financierform.Mixed_breed }}</p>
+        {% for error in financierform.Mixed_breed.errors %}
+        <p style="color: red">{{ error }}</p>
+        {% endfor %}
+
+        <p>{{ form.password1.label_tag }}<br>
+        {{ form.password1 }}</p>
+        {% for error in form.password1.errors %}
+        <p style="color: red">{{ error }}</p>
+        {% endfor %}
+
+        <p>{{ form.password2.label_tag }}<br>
+        {{ form.password2 }}</p>
+        {% for error in form.password2.errors %}
+        <p style="color: red">{{ error }}</p>
+        {% endfor %}
+      <button type="submit" class="btn">Sign up</button>
+  </form>
+  
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script>
+    $("#id_state").change(function () {
+      var url = $("#FinancierForm").attr("data-districts-url");
+      var stateId = $(this).val();
+
+      $.ajax({
+        url: url,
+        data: {
+          'state': stateId
+        },
+        success: function (data) {
+          $("#id_district").html(data);
+        }
+      });
+
+    });
+  </script>
+  <script>
+    $("#id_district").change(function () {
+      var url = $("#FinancierForm").attr("data-subdistricts-url");
+      var districtId = $(this).val();
+
+      $.ajax({
+        url: url,
+        data: {
+          'district': districtId
+        },
+        success: function (data) {
+          $("#id_subdistrict").html(data);
+        }
+      });
+
+    });
+  </script>
+
+<script>
+  $("#id_subdistrict").change(function () {
+    var url = $("#FinancierForm").attr("data-pincode-url");
+    var subdistrictId = $(this).val();
+
+    $.ajax({
+      url: url,
+      data: {
+        'subdistrict': subdistrictId
+      },
+      success: function (data) {
+        $("#id_pincode").html(data);
+      }
+    });
+
+  });
+</script>
+<div style="float:center;"></div>
+
+</body>
+</html>

@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from home.models import FarmerProfile,District,SubDistrict,Pincode
 from phonenumber_field.formfields import PhoneNumberField
-
+#from home.models import CustomUser
 
 '''
 class SignupForm(UserCreationForm):
