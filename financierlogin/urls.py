@@ -12,6 +12,8 @@ urlpatterns = [
     path('signup/', views.signup, name='signup'),
     path('activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$', views.activate, name='activate'),
     path('ajax/load_districts/', views.load_districts, name='load_districts'),
-    path('ajax/load_subdistricts/', views.load_subdistricts, name='load_subdistricts'),
-    path('ajax/load_pincode/', views.load_pincode, name='load_pincode'),
+    path('ajax/load_cities/', views.load_cities, name='load_cities'),
+    path('ajax/load_banks/', views.load_banks, name='load_banks'),
+    path('ajax/load_branches/', views.load_branches, name='load_branches'),
+    path('ajax/load_ifscs/', views.load_ifscs, name='load_ifscs'),
 ]

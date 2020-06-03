@@ -51,23 +51,12 @@ input[type=text], input[type=password], .myclass,.phoneclass {
   background: #f1f1f1;
 }
 
-.dateclass{
-  width: auto;
-  padding-top: 15px;
-  padding-bottom: 15px;
-  padding-left:11px;
-  padding-right: 11px;
-  margin: 5px 0 12px 0;
-  border: none;
-  background: #f1f1f1;
-}
-
 input[type=text]:focus, input[type=password]:focus,.phoneclass:focus{
   background-color: #ddd;
   outline: none;
 }
 
-.myclass:focus,.dateclass:focus{
+.myclass:focus{
   /*background-color: #ddd;*/
   outline: none;
 }
@@ -91,7 +80,7 @@ div.sticky {
   position: -webkit-sticky;
   position: sticky;
   top: 0;
-  background-image: url("{% static 'images/im3_1.png' %}");
+  background-image: url("{% static 'images/im5.jpg' %}");
   height: 100%;
   width:65%;
   /* Center and scale the image nicely */
@@ -198,20 +187,18 @@ div.sticky {
   </nav>
     
 <h2>Form</h2>
-<!--
-<div class="bg-img" style="float:left; position: sticky;">
-</div>-->
+
 <div class="sticky"></div>
-  <form method="post" class="container"  id="FinancierForm" style="float:right;" data-districts-url="{% url 'financierlogin:load_districts' %}" data-subdistricts-url="{% url 'financierlogin:load_subdistricts' %}"  data-pincode-url="{% url 'financierlogin:load_pincode' %}" novalidate>
-      {% csrf_token %}
-      
-      <h2><center>Financier</center>Registration Form</h2><br>
+  <form method="post" class="container"  id="FinancierForm" style="float:right;" data-districts-url="{% url 'financierlogin:load_districts' %}" data-cities-url="{% url 'financierlogin:load_cities' %}"  data-bank-url="{% url 'financierlogin:load_banks' %}"  data-branch-url="{% url 'financierlogin:load_branches' %}" data-ifsc-url="{% url 'financierlogin:load_ifscs' %}" novalidate>
+    {% csrf_token %}
+
+       <h2><center>Financier</center>Registration Form</h2><br>
  
         <p>{{ form.username.label_tag }}<br>
         {{ form.username }}</p>
         {% for error in form.username.errors %}
         <p style="color: red">{{ error }}</p>
-        {% endfor %}
+        {% endfor %} 
 
         <p>{{ form.email.label_tag }}<br>
         {{ form.email }}</p>
@@ -251,25 +238,13 @@ div.sticky {
         <p style="color: red">{{ error }}</p>
         {% endfor %}
              
-        <p>{{ financierform.subdistrict.label_tag }}<br>
-        {{ financierform.subdistrict }}</p>
-        {% for error in financierform.subdistrict.errors %}
+        <p>{{ financierform.city.label_tag }}<br>
+        {{ financierform.city }}</p>
+        {% for error in financierform.city.errors %}
         <p style="color: red">{{ error }}</p>
         {% endfor %}
 
-        <p>{{ financierform.pincode.label_tag }}<br>
-        <span style="width: 100%;">{{ financierform.pincode }}</span></p>
-        {% for error in financierform.pincode.errors %}
-        <p style="color: red">{{ error }}</p>
-        {% endfor %}
-
-        <p>{{ financierform.Address.label_tag }}<br>
-        {{ financierform.Address }}</p>
-        {% for error in financierform.Address.errors %}
-        <p style="color: red">{{ error }}</p>
-        {% endfor %}
         
-  
         <p>{{ financierform.Phone_number.label_tag }}<br>
         Please enter along with countrycode<br>
         {{ financierform.Phone_number }}</p>
@@ -277,68 +252,24 @@ div.sticky {
         <p style="color: red">{{ error }}</p>
         {% endfor %}
       
-
-        <p>{{ financierform.Size_of_farm.label_tag }}<br>
-        {{ financierform.Size_of_farm }}</p>
-        {% for error in financierform.Size_of_farm.errors %}
+        <p>{{ financierform.bank.label_tag }}<br>
+        {{ financierform.bank }}</p>
+        {% for error in financierform.bank.errors %}
+        <p style="color: red">{{ error }}</p>
+        {% endfor %}
+  
+        <p>{{ financierform.branch.label_tag }}<br>
+        {{ financierform.branch }}</p>
+        {% for error in financierform.branch.errors %}
+        <p style="color: red">{{ error }}</p>
+        {% endfor %}
+  
+        <p>{{ financierform.ifsccode.label_tag }}<br>
+         {{ financierform.ifsccode }}</p>
+        {% for error in financierform.ifsccode.errors %}
         <p style="color: red">{{ error }}</p>
         {% endfor %}
         
-        <p>{{ financierform.Equipment_used.label_tag }}<br>
-        {{ financierform.Equipment_used }}</p>
-        {% for error in financierform.Equipment_used.errors %}
-        <p style="color: red">{{ error }}</p>
-        {% endfor %}
-
-        <p>{{ financierform.Installed_date.label_tag }}<br>
-        {{ financierform.Installed_date }}</p>
-        {% for error in financierform.Installed_date.errors %}
-        <p style="color: red">{{ error }}</p>
-        {% endfor %}<br>
-
-        <span style="font-weight: bold;"><p>Breed Type :<br></p></span>
-        <p>{{ financierform.Jersey.label_tag }}&nbsp;
-        {{ financierform.Jersey }}<br>
-        {% for error in financierform.Jersey.errors %}
-        <p style="color: red">{{ error }}</p>
-        {% endfor %}
-
-        {{ financierform.Holstein_Friesian.label_tag }}&nbsp;
-        {{ financierform.Holstein_Friesian }}<br>
-        {% for error in financierform.Holstein_Friesian.errors %}
-        <p style="color: red">{{ error }}</p>
-        {% endfor %}
-        
-        {{ financierform.Sahiwal.label_tag }}&nbsp;
-        {{ financierform.Sahiwal }}<br>
-        {% for error in financierform.Sahiwal.errors %}
-        <p style="color: red">{{ error }}</p>
-        {% endfor %}
-        
-        {{ financierform.Khillar.label_tag }}&nbsp;
-        {{ financierform.Khillar }}<br>
-        {% for error in financierform.Khillar.errors %}
-        <p style="color: red">{{ error }}</p>
-        {% endfor %}
-
-        {{ financierform.Gir.label_tag }}&nbsp;
-        {{ financierform.Gir }}<br></p>
-        {% for error in financierform.Gir.errors %}
-        <p style="color: red">{{ error }}</p>
-        {% endfor %}
-
-        <p>{{ financierform.Other_breed.label_tag }}
-        {{ financierform.Other_breed }}</p>
-        {% for error in financierform.Other_breed.errors %}
-        <p style="color: red">{{ error }}</p>
-        {% endfor %}
-
-        <p>{{ financierform.Mixed_breed.label_tag }}
-        {{ financierform.Mixed_breed }}</p>
-        {% for error in financierform.Mixed_breed.errors %}
-        <p style="color: red">{{ error }}</p>
-        {% endfor %}
-
         <p>{{ form.password1.label_tag }}<br>
         {{ form.password1 }}</p>
         {% for error in form.password1.errors %}
@@ -350,6 +281,10 @@ div.sticky {
         {% for error in form.password2.errors %}
         <p style="color: red">{{ error }}</p>
         {% endfor %}
+
+        {{ form.non_field_errors }}
+        {{ financierform.non_field_errors }}
+
       <button type="submit" class="btn">Sign up</button>
   </form>
   
@@ -371,9 +306,10 @@ div.sticky {
 
     });
   </script>
+  
   <script>
     $("#id_district").change(function () {
-      var url = $("#FinancierForm").attr("data-subdistricts-url");
+      var url = $("#FinancierForm").attr("data-cities-url");
       var districtId = $(this).val();
 
       $.ajax({
@@ -382,7 +318,7 @@ div.sticky {
           'district': districtId
         },
         success: function (data) {
-          $("#id_subdistrict").html(data);
+          $("#id_city").html(data);
         }
       });
 
@@ -390,22 +326,59 @@ div.sticky {
   </script>
 
 <script>
-  $("#id_subdistrict").change(function () {
-    var url = $("#FinancierForm").attr("data-pincode-url");
-    var subdistrictId = $(this).val();
+  $("#id_city").change(function () {
+    var url = $("#FinancierForm").attr("data-bank-url");
+    var cityId = $(this).val();
 
     $.ajax({
       url: url,
       data: {
-        'subdistrict': subdistrictId
+        'city': cityId
       },
       success: function (data) {
-        $("#id_pincode").html(data);
+        $("#id_bank").html(data);
       }
     });
 
   });
 </script>
+
+<script>
+  $("#id_bank").change(function () {
+    var url = $("#FinancierForm").attr("data-branch-url");
+    var bankId = $(this).val();
+
+    $.ajax({
+      url: url,
+      data: {
+        'bank': bankId
+      },
+      success: function (data) {
+        $("#id_branch").html(data);
+      }
+    });
+
+  });
+</script>
+
+<script>
+  $("#id_branch").change(function () {
+    var url = $("#FinancierForm").attr("data-ifsc-url");
+    var branchId = $(this).val();
+
+    $.ajax({
+      url: url,
+      data: {
+        'branch': branchId
+      },
+      success: function (data) {
+        $("#id_ifsccode").html(data);
+      }
+    });
+
+  });
+</script>
+
 <div style="float:center;"></div>
 
 </body>

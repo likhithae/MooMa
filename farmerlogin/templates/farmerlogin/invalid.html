@@ -6,7 +6,9 @@
 
 <title>MooMa</title>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="js/bootstrap-transition.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -100,6 +102,30 @@ body, html {
   .dropdown-menu li a:hover {
       background-color: red !important;
   }
+
+  footer{
+     background: #05223d;
+     padding: 15px 0;
+     color:#8d8d8c;
+     width: 100%;
+     position:absolute;
+     bottom:0;
+}
+ 
+ul.bottom_menu li {
+     float: left;
+     font-size: 14px;
+     font-weight: 300;   
+     margin-left: 20px;
+     list-style: none;
+    
+}
+
+ul.bottom_menu li a {
+     color: #8d8d8c;
+     text-decoration: none;
+
+}
 </style>
 </head>
 <body>
@@ -132,7 +158,7 @@ body, html {
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">Login<span class="caret"></span></a>
             <ul class="dropdown-menu">
               <li><a href="{% url 'farmerlogin:userlogin' %}">Farmer Login</a></li>
-              <li><a href="">Financier Login</a></li>
+              <li><a href="{% url 'financierlogin:userlogin' %}">Financier Login</a></li>
               <li><a href="">Admin Login</a></li>
               <li><a href="{% url 'farmerlogin:userlogout' %}">Logout</a></li>
             </ul>
@@ -156,7 +182,27 @@ body, html {
     
 </div>
 
-  
+<footer >
+  <div class="container0" style="padding: 0px 80px;">
+    <div class="row">
+      <div class="col-md-6 mb-4">
+        <p class="crp" style="float:left;margin:0;font-size: 15px;">© 2020 MooMa . All Rights Reserved.</p>
+      </div>
+
+      <div class="col-md-6 mb-4">
+        <ul class="bottom_menu" style="float:right;">
+          <li><a href="{% url 'aboutus:aboutus' %}">About Us</a></li>
+          <li><a href="#">Career</a></li>
+          <li><a href="{% url 'contactus:showform' %}">Contact us</a></li>
+          <li><a href="#">Terms of Service</a></li>
+          <li><a href="#">Privacy</a></li>
+       </ul>
+      </div>    
+    </div>
+
+
+  </div>
+</footer>
 
 
 </body>

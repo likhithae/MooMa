@@ -12,10 +12,10 @@ from django.core.mail import EmailMessage
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
-from home.models import FinancierProfile,State,District,SubDistrict,Pincode,Usertype
+from home.models import FinancierProfile,State,District,ACity,Usertype,bank,branch,ifsc
 
 
-@login_required
+#@login_required
 def userlogout(request):
     logout(request)
     return redirect("home:home")
@@ -29,17 +29,15 @@ def signup(request):
         if form.is_valid() and financierform.is_valid():
             user = form.save()
             user.is_active = False
-            user.is_financier = True
             user.save()
             profile = financierform.save(commit=False)
             profile.user=user
             profile.save()
-            
             temp = Usertype.objects.get_or_create(
                         user = user,
                         is_financier = True,
-                    )
-
+                        )
+            #farmerform.save()
             current_site = get_current_site(request)
             mail_subject = 'Activate your MooMa account.'
             message = render_to_string('financierlogin/account_activation_email.html', {
@@ -55,6 +53,7 @@ def signup(request):
             msg1 = 'Please confirm your email address to complete the registration'
             email.send()
             return render(request, 'financierlogin/activation.html', {'msg1': msg1})
+            #return HttpResponse('Please confirm your email address to complete the registration')
 
     else:
         form = Signup()
@@ -123,14 +122,26 @@ def load_districts(request):
 
     return render(request, 'financierlogin/dropdown.html', {'districts': districts})
 
-def load_subdistricts(request):
+def load_cities(request):
     district_id = request.GET.get('district')
-    subdistricts = SubDistrict.objects.filter(district_id=district_id).order_by('name')
+    cities = ACity.objects.filter(district_id=district_id).order_by('name')
 
-    return render(request, 'financierlogin/dropdown1.html', {'subdistricts':subdistricts})
+    return render(request, 'financierlogin/dropdown1.html', {'cities':cities})
 
-def load_pincode(request):
-    subdistrict_id = request.GET.get('subdistrict')
-    pincodes = Pincode.objects.filter(subdistrict_id=subdistrict_id).order_by('name')
+def load_banks(request):
+    city_id = request.GET.get('city')
+    banks = bank.objects.filter(city_id=city_id).order_by('name')
 
-    return render(request, 'financierlogin/dropdown2.html', {'pincodes':pincodes})
+    return render(request, 'financierlogin/dropdown2.html', {'banks':banks})
+
+def load_branches(request):
+    bank_id = request.GET.get('bank')
+    branches = branch.objects.filter(bank_id=bank_id).order_by('name')
+
+    return render(request, 'financierlogin/dropdown3.html', {'branches':branches})
+
+def load_ifscs(request):
+    branch_id = request.GET.get('branch')
+    ifscs = ifsc.objects.filter(branch_id=branch_id).order_by('name')
+
+    return render(request, 'financierlogin/dropdown4.html', {'ifscs':ifscs})

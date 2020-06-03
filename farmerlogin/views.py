@@ -20,7 +20,7 @@ from home.models import FarmerProfile,State,District,SubDistrict,Pincode,Usertyp
 #def loggedin(request):
 #    return HttpResponse("You are logged in !")
 
-@login_required
+#@login_required
 def userlogout(request):
     logout(request)
     #messages.info(request, "Logged out successfully!")

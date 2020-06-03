@@ -6,7 +6,9 @@
 
     <title>MooMa</title>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="js/bootstrap-transition.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -18,6 +20,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+   <!-- <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">-->
   <style>
 
   body {
@@ -25,12 +28,8 @@
     background-color: #FFFFFF;
       overflow-x: hidden;
   }
-  h3, h4 {
-      margin: 10px 0 30px 0;
-      letter-spacing: 10px;
-      font-size: 20px;
-      color: #111;
-  }
+  
+
   .container {
       padding: 80px 120px;
   }
@@ -58,21 +57,12 @@
       /*{#-webkit-filter: grayscale(90%);#}*/
       width: 100%; /* Set width to 100% */
       margin: auto;
-      height: 700px;
+      height: 600px;
   }
 
-  .carousel-caption h3 {
-      color: #2c3e50 ;
-      font-size: 50px;
-  }
 
-  .carousel-caption p{
-      color: #060E2F;
-      font-size: 25px;
-  }
   @media (max-width: 600px) {
     .carousel-caption {
-        
         display: none; /* Hide the carousel text when the screen is less than 600 pixels wide */
     }
   }
@@ -170,16 +160,27 @@
   .dropdown-menu li a:hover {
       background-color: red !important;
   }
-  footer {
-      background-color: #2b669a;
-      color: #f5f5f5;
-      padding: 32px;
-      background: -webkit-linear-gradient(to right, #31BDE6, #00003E);
-      background: linear-gradient(to right, #31BDE6, #00003E);
-      position: absolute;
-      width: 100%;
-  }
+footer{
+     background: #05223d;
+     padding: 15px 0;
+     color:#8d8d8c;
+     width: 100%;
+}
+ 
+ul.bottom_menu li {
+     float: left;
+     font-size: 14px;
+     font-weight: 300;   
+     margin-left: 20px;
+     list-style: none;
+    
+}
 
+ul.bottom_menu li a {
+     color: #8d8d8c;
+     text-decoration: none;
+
+}
   .form-control {
       border-radius: 0;
   }
@@ -281,27 +282,28 @@ text-align: center;
     <!-- Wrapper for slides -->
     <div class="carousel-inner" role="listbox">
       <div class="item active">
-        <img src="{% static 'images/Mooma1.jpg' %}" alt="New York" style="height: 590px">
+        <img src="{% static 'images/index1.jpg' %}" alt="" style="height: 580px;filter: brightness(85%);">
+        <div class="carousel-caption" style="color:white">
+          <h3 style="text-align:center;font-size:25px;color:#fff;font-family: 'Ubuntu', sans-serif;letter-spacing: normal;padding-bottom: 160px;">Global food demand is growing, and traditional agriculture simply cannot produce enough food to meet the world’s nutritional needs.</h4>
+          </h3>
+        </div>
+      </div>
+
+      <div class="item">
+        <img src="{% static 'images/index2.jpg' %}" alt="" style="height: 580px;filter: brightness(75%); ">
+        <div class="carousel-caption">
+        <h3 style="text-align:center;font-size:25px;color:#fff;font-family:sans-serif;letter-spacing: normal;padding-bottom: 150px;">MooMa’s innovative technology solutions help diary farmers produce more high-quality diary milk than traditional diary farming practices to meet the world’s growing food demand and nutritional needs.</h4>
+         </h3>          
+        </div>
+      </div>
+
+      <div class="item">
+        <img src="{% static 'images/index3.jpeg' %}" alt="" style="height: 580px;filter: brightness(75%);">
         <div class="carousel-caption" >
-          <!--<h3 style="font-weight: bold; font-size: 60px;" >QuickWell</h3>
-          <p>Take the world's best quality treatment</p>-->
-        </div>
+           <h3 style="text-align:center;font-size:25px;color:#fff;font-family: 'Ubuntu', sans-serif;letter-spacing: normal;padding-bottom: 90px;">By 2050, the global population will be 9.8 billion and Food production will need to increase 70% to meet this demand sustainably. </br> 
+              Indian & Asian milk producers need to move towards Smart Diary Farming (SDF) by incorporating new techniques and solutions to meet potential milk deficits in the future, according to FAO.</h4>
+           </h3>
       </div>
-
-      <div class="item">
-        <img src="{% static 'images/mooma2.jpg' %}" alt="New York" style="height: 610px">
-        <div class="carousel-caption">
-         <!-- <h3>We always put  our patients first</h3>
-          <p>Your health is our priority</p>-->
-        </div>
-      </div>
-
-      <div class="item">
-        <img src="{% static 'images/mooma4.jpg' %}" alt="Los Angeles" style="height: 610px">
-        <div class="carousel-caption">
-          <!--<h3>Medical Services that you can trust 100% </h3>
-          <p>Developing innovative new therapies</p>-->
-        </div>
       </div>
         <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
       <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
@@ -323,8 +325,8 @@ text-align: center;
   <h3 style=" color: #2c3e50; font-size: 25px; padding-bottom: 15px">ABOUT US </h3>
     <hr style="border: 1px solid #31BDE6;  width: 150px; " size="5">
 
-    <p style="padding-top: 30px; font-size: 18px"><em>MooMa which is an Agritech, diary milk startup improving diary milk farm efficiency and productivity and developing diary milk market places across supply chains globally, by empowering smallholder diary farmers.
-    </em></p>
+    <p style="padding-top: 30px; font-size: 18px;">MooMa which is an Agritech, diary milk startup improving diary milk farm efficiency and productivity and developing diary milk market places across supply chains globally, by empowering smallholder diary farmers.
+    </p>
 
   <br>
 </div>
@@ -469,64 +471,29 @@ text-align: center;
       
 
 
-<!-- Footer -->
-<footer class="text-center">
-    <div class="footer-left" style="float: left">
 
-        <p style="font-family: Satisfy; font-size: 40px">MooMa</p>
+<footer >
 
-        <p class="footer-links">
-            <a href="#"><span style="color: white; font-size: 18px">Home</span></a>
-          ·
-            <a href="#"><span style="color: white;font-size: 18px">About us </span></a>
-          ·
-            <a href="#"><span style="color: white;font-size: 18px ">Technology</span></a>
-          ·
-            <a href="#"><span style="color: white; font-size: 18px">Solutions</span></a>
-          ·
-            <a href="#"><span style="color: white; font-size: 18px">Login</span></a>
-          ·
-            <a href="#"><span style="color: white; font-size: 18px">Contact us</span></a>
-        </p>
-
-        <p class="footer-company-name">MooMa &copy; 2017</p>
+  <div class="container0" style="padding: 0px 80px;">
+    <div class="row">
+      <div class="col-md-6 mb-4">
+        <p class="crp" style="float:left;margin:0;font-size: 15px;">© 2020 MooMa . All Rights Reserved.</p>
       </div>
-    <div class="footer-right" style="float: right">
-    <div>
-          <i class="fa fa-map-marker"></i>
-              <p><span>Hyderabad </span></p>
-        </div>
 
-        <div>
-          <i class="fa fa-phone"></i>
-          <p>+91 7489623154</p>
-        </div>
-
-        <div>
-          <i class="fa fa-envelope"></i>
-          <p><a href="mailto:support@company.com">Mooma@company.com</a></p>
-        </div>
+      <div class="col-md-6 mb-4">
+        <ul class="bottom_menu" style="float:right;">
+          <li><a href="{% url 'aboutus:aboutus' %}">About Us</a></li>
+          <li><a href="#">Career</a></li>
+          <li><a href="{% url 'contactus:showform' %}">Contact us</a></li>
+          <li><a href="#">Terms of Service</a></li>
+          <li><a href="#">Privacy</a></li>
+       </ul>
+      </div>    
     </div>
 
-    <div class="footer-center">
 
-        <p class="footer-company-about" style="font-size: 20px; padding-top: 20px">
-          <span>About the company</span>
-          <br> 
-        </p>
-
-        <div class="footer-icons" style="font-size: 30px">
-
-          <a href="#"><i class="fa fa-facebook" style="color: white">&nbsp;</i></a>
-          <a href="#"><i class="fa fa-twitter" style="color: white">&nbsp;</i></a>
-          <a href="#"><i class="fa fa-linkedin" style="color: white">&nbsp;</i></a>
-
-        </div>
-
-      </div>
+  </div>
 </footer>
-
-
 
 
 </body>

@@ -25,7 +25,7 @@ SECRET_KEY = 'cc68a7*-os0xc%l(usixa#_=b!0%si$zo520z&l(_q8*)vx=ll'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["likhithae.pythonanywhere.com","localhost"]
+ALLOWED_HOSTS = ["likhithae.pythonanywhere.com","localhost",'*']
 # Application definition
 
 INSTALLED_APPS = [
@@ -89,7 +89,42 @@ DATABASES = {
     }
 }
 
+'''
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'mooma',
+        'USER': 'root',
+        'PASSWORD': 'ammu@1605',
+        'HOST': 'localhost',
+        'PORT': '3306',
+    }
+}
 
+
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'b33_25849522_login',
+        'USER': 'b33_25849522',
+        'PASSWORD': 'Pikachu@123',
+        'HOST': 'sql110.byethost.com',
+        'PORT': '',
+    }
+}
+
+
+settings.configure(
+DATABASE_ENGINE = 'mysql',
+DATABASE_NAME = 'b33_25849522_login',
+DATABASE_USER = 'b33_25849522',
+DATABASE_PASSWORD = '',
+DATABASE_HOST = 'http://YourDataBaseAdress.com/mydatabase',
+DATABASE_PORT = '6676',
+TIME_ZONE = 'America/Sao_Paulo',) //if you want to connect this forever add this
+'CONN_MAX_AGE': None,
+'''
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
 
@@ -127,6 +162,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),
+    '/MooMaWebsite/MooMa/home/static/',
+]
 
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'

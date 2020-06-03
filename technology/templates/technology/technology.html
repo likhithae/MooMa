@@ -3,10 +3,11 @@
 <head>
 
     {% load static %}
-
     <title>MooMa</title>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no,shrink-to-fit=no">
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="js/bootstrap-transition.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -18,360 +19,280 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <style>
+    <link rel="stylesheet" href="{% static 'vendor/vegas/vegas.min.css' %}">
 
-  body {
-      font: 400 15px/1.8 Lato, sans-serif;
-    background-color: #FFFFFF;
-      overflow-x: hidden;
-  }
-  h3, h4 {
-      margin: 10px 0 30px 0;
-      letter-spacing: 10px;
-      font-size: 20px;
-      color: #111;
-  }
-  .container {
-      padding: 80px 120px;
-  }
+    <style>
 
-  .container1 {
-      padding: 100px 80px;
-
-  }
-
-  .container3 {
-      padding: 20px 80px;
-
-  }
-  .person {
-      border: 10px solid transparent;
-      margin-bottom: 25px;
-      width: 80%;
-      height: 80%;
-      opacity: 0.7;
-  }
-  .person:hover {
-      border-color: #f1f1f1;
-  }
-  .carousel-inner img {
-      /*{#-webkit-filter: grayscale(90%);#}*/
-      width: 100%; /* Set width to 100% */
-      margin: auto;
-      height: 700px;
-  }
-
-  .carousel-caption h3 {
-      color: #2c3e50 ;
-      font-size: 50px;
-  }
-
-  .carousel-caption p{
-      color: #060E2F;
-      font-size: 25px;
-  }
-  @media (max-width: 600px) {
-    .carousel-caption {
-        ;
-        display: none; /* Hide the carousel text when the screen is less than 600 pixels wide */
-    }
-  }
-  .bg-1 {
-      background: #2d2d30;
-      color: #bdbdbd;
-  }
-  .bg-1 h3 {color: #fff;}
-  .bg-1 p {font-style: italic;}
-  .list-group-item:first-child {
-      border-top-right-radius: 0;
-      border-top-left-radius: 0;
-  }
-  .list-group-item:last-child {
-      border-bottom-right-radius: 0;
-      border-bottom-left-radius: 0;
-  }
-  .thumbnail {
-      padding: 0 0 15px 0;
-      border: none;
-      border-radius: 0;
-  }
-  .thumbnail p {
-      margin-top: 15px;
-      color: #555;
-  }
-  .btn {
-      padding: 10px 20px;
-      background-color: #333;
-      color: #f1f1f1;
-      border-radius: 0;
-      transition: .2s;
-  }
-  .btn:hover, .btn:focus {
-      border: 1px solid #333;
-      background-color: #fff;
-      color: #000;
-  }
-  .modal-header, h4, .close {
-      background-color: #333;
-      color: #fff !important;
-      text-align: center;
-      font-size: 30px;
-  }
-  .modal-header, .modal-body {
-      padding: 40px 50px;
-  }
-  .nav-tabs li a {
-      color: #777;
-  }
-
-  .navbar {
-      font-family: Montserrat, sans-serif;
-      margin-bottom: 0;
-      /*background-color: #2b669a;*/
-      background: -webkit-linear-gradient(to right, #FFFFFF, #FFFFFF);
-      background: linear-gradient(to right, #FFFFFF, #FFFFFF);
-      border: 0;
-      font-size: 15px !important;
-      font-weight: bold;
-      /*letter-spacing: 1px;*/
-      opacity: 0.8;
-      padding-top: 10px;
-      padding-bottom: 10px;
-  }
-  .navbar li a, .navbar .navbar-brand {
-      color: #707070 !important;
-  }
-  .navbar-nav li a:hover {
-      color: #29292c !important;
-  }
-  .navbar-nav li.active a {
-      color: #fff !important;
-      background-color: #29292c !important;
-  }
-  .navbar-default .navbar-toggle {
-      border-color: transparent;
-  }
-  .dropdown-toggle li a:hover {
-      color: #29292c !important;
-      border: none;
-   outline: none;
-   text-decoration: none;
-  }
-  .dropdown-toggle:hover,
-.dropdown-toggle:focus {
-  text-decoration: none;
-  color: #29292c !important;
-}
-  .dropdown-menu li a {
-      color: #000 !important;
-  }
-  .dropdown-menu li a:hover {
-      background-color: red !important;
-  }
-  footer {
-      background-color: #2b669a;
-      color: #f5f5f5;
-      padding: 32px;
-      background: -webkit-linear-gradient(to right, #31BDE6, #00003E);
-      background: linear-gradient(to right, #31BDE6, #00003E);
-      position: absolute;
-      width: 100%;
-  }
-
-  .form-control {
-      border-radius: 0;
-  }
-  textarea {
-      resize: none;
-  }
-
-      .span4 img {
-    margin-right: 10px;
-}
-.span4 .img-left {
-    float: left;
-}
-.span4 .img-right {
-    float: right;
-}
-.overlay {
-  position: absolute;
-  bottom:0px;
-  left: 0px;
-  right: 0px;
-   top:0px;
-  background-color: black;
-  overflow: hidden;
-  width: 360px;
-  height:0;
-  transition: 1s ease ;
-text-align: center;
-}
-
-.conti:hover .overlay {
-  bottom: 0;
-  height: 390px;
-  opacity: 0.8;
-}
-      .texting{
-    white-space: nowrap;
-  color: white;
-  font-size: 20px;
-  position: absolute;
-  overflow: hidden;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-}
-</style>
-</head>
-<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50">
-
-<nav class="navbar navbar-default navbar-fixed-top">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="{% url 'home:home' %}" style="font-family: 'Satisfy', cursive; font-size:25px">MooMa</a>
-    </div>
-    <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="{% url 'home:home' %}">Home</a></li>
-        <li><a href="{% url 'aboutus:aboutus' %}">About us</a></li>
-        <li><a href="{% url 'technology:technology' %}">Technology</a></li>&nbsp;&nbsp;
-        <!--<li><a href="">Solutions</a></li>-->
+        body {
+            font: 400 15px/1.8 Lato, sans-serif;
+            background-color: #FFFFFF;
+            overflow-x: hidden;
+        }
+        h3, h4 {
+            margin: 10px 0 30px 0;
+            letter-spacing: 10px;
+            font-size: 20px;
+            color: #111;
+        }
+        .container {
+            padding: 80px 120px;
+        }
       
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#" style="padding-top:12px;float: left;color:#707070">Solutions
-          <span class="caret" style="color: #fff;" ></span></a>
-          <ul class="dropdown-menu">
-              <li><a href="">Milk Collection</a></li>
-              <li><a href="">Milk Processing</a></li>
-              <li><a href="">Cow trading and Breeding</a></li>
-              <li><a href="">B2B Marketplace</a></li>
-          </ul>
+        .container1 {
+            padding: 100px 80px;
+      
+        }
+      
+        .container3 {
+            padding: 20px 80px;
+      
+        }
+        
+        .nav-tabs li a {
+            color: #777;
+        }
+      
+        .navbar {
+            font-family: Montserrat, sans-serif;
+            margin-bottom: 0;
+            /*background-color: #2b669a;
+            background: -webkit-linear-gradient(to right, #FFFFFF, #FFFFFF);
+            background: linear-gradient(to right, #FFFFFF, #FFFFFF);
+            */
+            background:#FEFCFF;
+            border: 0;
+            font-size: 15px !important;
+            font-weight: bold;
+            /*letter-spacing: 1px;
+            opacity: 0.8;*/
+            padding-top: 5px;
+            padding-bottom: 5px;
+        }
+        .navbar li a, .navbar .navbar-brand {
+            color: #707070 !important;
+        }
+        .navbar-nav li a:hover {
+            color: #29292c !important;
+        }
+        .navbar-nav li.active a {
+            color: #fff !important;
+            background-color: #29292c !important;
+        }
+        .navbar-default .navbar-toggle {
+            border-color: transparent;
+        }
+        .dropdown-toggle li a:hover {
+            color: #29292c !important;
+            border: none;
+         outline: none;
+         text-decoration: none;
+        }
+        .dropdown-toggle:hover,
+      .dropdown-toggle:focus {
+        text-decoration: none;
+        color: #29292c !important;
+      }
+        .dropdown-menu li a {
+            color: #000 !important;
+        }
+        .dropdown-menu li a:hover {
+            background-color: red !important;
+        }
+      
+      footer{
+           background: #05223d;
+           padding: 15px 0;
+           color:#8d8d8c;
+           width: 100%;
+           /*
+           position:absolute;
+           bottom:0;*/
+           
+      }
+       
+      ul.bottom_menu li {
+           float: left;
+           font-size: 14px;
+           font-weight: 300;   
+           margin-left: 20px;
+           list-style: none;
           
-        <li><a href="">Login</a></li>
-        <li><a href="{% url 'contactus:showform' %}">Contact us</a></li>&nbsp;
-        </li>
-      </ul>
+      }
+      
+      ul.bottom_menu li a {
+           color: #8d8d8c;
+           text-decoration: none;
+      
+      }
+      </style>
+      </head>
+      
+      <body>
+      
+        <nav class="navbar navbar-default navbar-fixed-top">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>                        
+              </button>
+              <img src="{% static 'images/logo4.png' %}" style="height:59px ; width:59px">
+              <img src="{% static 'images/logo3.png' %}" style="height:60px ; width:145px">
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+              <ul class="nav navbar-nav navbar-right">
+                <li><a href="{% url 'home:home' %}">Home</a></li>
+                <li><a href="{% url 'aboutus:aboutus' %}">About us</a></li>
+                <li><a href="{% url 'technology:technology' %}">Technology</a></li>
+                <li class="dropdown">
+                  <a class="dropdown-toggle" data-toggle="dropdown" href="#">Solutions<span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="">Milk Collection</a></li>
+                    <li><a href="">Milk Processing</a></li>
+                    <li><a href="">Cow trading and Breeding</a></li>
+                    <li><a href="">B2B Marketplace</a></li>
+                  </ul>
+                </li>
+                <li class="dropdown">
+                  <a class="dropdown-toggle" data-toggle="dropdown" href="#">Login<span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="{% url 'farmerlogin:userlogin' %}">Farmer Login</a></li>
+                    <li><a href="{% url 'financierlogin:userlogin' %}">Financier Login</a></li>
+                    <li><a href="">Admin Login</a></li>
+                    <li><a href="{% url 'farmerlogin:userlogout' %}">Logout</a></li>
+                  </ul>
+                </li>
+                <li><a href="{% url 'contactus:showform' %}">Contact us</a></li>&nbsp;
+              </ul>
+            </div>
+          </div>
+      </nav>   
+      <div style="padding-top:56px;"></div>
+      <div class="slide4" style="margin:auto;height:550px;">
+        <div class="name text-center" style="text-align:center;padding-top:120px;padding-bottom: 100px;">
+            <h3 class="mb-4" style="font-size:25px;color:#fff;font-family: 'Ubuntu', sans-serif;letter-spacing: normal;padding:100px;">MooMa’s Technologies offer practical, sustainable and cost-effective solutions towards achieving global Sustainable Development Goals (SDG)</h3>
+         </div>
+    </div>
+
+    <div class="slide1" style="margin:auto;height:600px;background:rgba(255,255,255,0.5); ">
+        <div class="name text-center" style="text-align:center;padding-top:150px;padding-bottom: 100px;">
+            <h3 class="mb-4" style="font-size:25px;color:#fff;font-family: 'Ubuntu', sans-serif;letter-spacing: normal;padding:100px;">To save future generations from hunger and malnutrition, dairy farmers will need to adopt innovative practices to increase their diary milk yields.</h3>
+        </div>
+    </div>
+
+    <div class="slide2" style="margin:auto;height:600px; ">
+      <div class="name text-center" style="text-align:center;padding-top:150px;padding-bottom: 100px;">
+          <h3 class="mb-4" style="font-size:25px;color:#fff;font-family: 'Ubuntu', sans-serif;letter-spacing: normal;padding:100px;">MooMa’s IoT, Machine Learning (ML) and Artificial Intelligence (AI) solutions increase dairy farms’ efficiency and milk production</h3>
     </div>
   </div>
-</nav>
 
 
-<div class="section layout_padding">
-    <div class="container">
-        <center><h3 style=" color: #2c3e50; font-size: 25px; padding-bottom: 0px">TECHNOLOGY </h3></center>
-        <hr style="border: 1px solid #31BDE6;  width: 150px; " size="5">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="full center">
-                    <div class="heading_main text_align_center">
-                        <h2><span class="theme_color">What </span>we have</h2>
-                        <p class="large">We have milking machine types based on pump capacity.</p>
-                         <table style="width:100%">
-                             <tr>
-                                 <th>Model SSM 180</th>
-                                 <th>Model SSM 330</th>
-                                 <th>Model SSM 400</th>
-                                 <th>Model SSM 600</th>
-                             </tr>
-                             <tr>
-                                 <td>Pump 180 LPM</td>
-                                 <td>Pump 300 LPM</td>
-                                 <td>Pump 400 LPM</td>
-                                 <td>Pump 600 LPM</td>
+    <div class="slide3" style="margin:auto;height:600px; ">
+        <div class="name text-center" style="text-align:center;padding-top:100px;padding-bottom: 100px;">
+          <h3 class="mb-4" style="font-size:25px;color:#fff;font-family: 'Ubuntu', sans-serif;letter-spacing: normal;padding:100px;">MooMa’s monitoring of individual cows and diary farms help diary farmers cope better with the increasingly complex operating environments and assist the agricultural sector to ramp up the efficiency of sustainable milk production in regions to continue serving an expanding human population.</h3>  
+     </div>
+    </div>
 
-                             </tr>
-                             <tr>
-                                 <td>Power 0.5HP</td>
-                                 <td>Power 1HP</td>
-                                 <td>Power 1HP</td>
-                                 <td>Power 2HP</td>
-                             </tr>
-                             <tr>
-                                 <td>20 lit bucket</td>
-                                 <td>25 lit </td>
-                                 <td>25 lit 2/3 bucket</td>
-                                 <td>25 lit 3/4 bucket</td>
-                             </tr>
-                              <tr>
-                                 <td>Upto 10 cows</td>
-                                 <td>Upto 15 cows</td>
-                                 <td>Upto 20 cows, upto 15 buffalos</td>
-                                 <td>Upto 40 cows and 20 buffalos</td>
-                             </tr>
-                         </table>
-                    </div>
-                </div>
+ 
+
+  
+    <footer >
+        <div class="container0" style="padding: 0px 80px;">
+          <div class="row">
+            <div class="col-md-6 mb-4">
+              <p class="crp" style="float:left;margin:0;font-size: 15px;">© 2020 MooMa . All Rights Reserved.</p>
             </div>
+      
+            <div class="col-md-6 mb-4">
+              <ul class="bottom_menu" style="float:right;">
+                <li><a href="{% url 'aboutus:aboutus' %}">About Us</a></li>
+                <li><a href="#">Career</a></li>
+                <li><a href="{% url 'contactus:showform' %}">Contact us</a></li>
+                <li><a href="#">Terms of Service</a></li>
+                <li><a href="#">Privacy</a></li>
+             </ul>
+            </div>    
+          </div>
         </div>
-    </div>
-</div>
+      </footer>
+      
 
 
-<!-- Footer -->
-<footer class="text-center">
-    <div class="footer-left" style="float: left">
+  <script src="{% static 'vendor/jquery/jquery-3.3.1.min.js' %}"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js' %}" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+      crossorigin="anonymous"></script>
+  <script src="{% static 'vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+  <script src="{% static 'vendor/vegas/vegas.min.js' %}"></script>
+  <!--<script src="{% static 'js/main.js' %}"></script>
+  <script src="{% static 'js/about-us.js' %}"></script>-->
 
-        <p style="font-family: Satisfy; font-size: 40px">MooMa</p>
+<script>
 
-        <p class="footer-links">
-            <a href="#"><span style="color: white; font-size: 18px">Home</span></a>
-          ·
-            <a href="#"><span style="color: white;font-size: 18px">About us </span></a>
-          ·
-            <a href="#"><span style="color: white;font-size: 18px ">Technology</span></a>
-          ·
-            <a href="#"><span style="color: white; font-size: 18px">Solutions</span></a>
-          ·
-            <a href="#"><span style="color: white; font-size: 18px">Login</span></a>
-          ·
-            <a href="#"><span style="color: white; font-size: 18px">Contact us</span></a>
-        </p>
-
-        <p class="footer-company-name">MooMa &copy; 2017</p>
-      </div>
-    <div class="footer-right" style="float: right">
-    <div>
-          <i class="fa fa-map-marker"></i>
-              <p><span>Hyderabad </span></p>
-        </div>
-
-        <div>
-          <i class="fa fa-phone"></i>
-          <p>+91 7489623154</p>
-        </div>
-
-        <div>
-          <i class="fa fa-envelope"></i>
-          <p><a href="mailto:support@company.com">Mooma@company.com</a></p>
-        </div>
-    </div>
-
-    <div class="footer-center">
-
-        <p class="footer-company-about" style="font-size: 20px; padding-top: 20px">
-          <span>About the company</span>
-          <br> 
-        </p>
-
-        <div class="footer-icons" style="font-size: 30px">
-
-          <a href="#"><i class="fa fa-facebook" style="color: white">&nbsp;</i></a>
-          <a href="#"><i class="fa fa-twitter" style="color: white">&nbsp;</i></a>
-          <a href="#"><i class="fa fa-linkedin" style="color: white">&nbsp;</i></a>
-
-        </div>
-
-      </div>
-</footer>
+$('.slide1').vegas({
+  overlay:  "{% static 'vendor/vegas/overlays/10.png' %}",
+  transition: 'zoomIn', 
+  transitionDuration: 4000,
+  delay: 10000,
+  animation: 'random',
+  animationDuration: 20000,
+  preload:true,
+  slides: [
+    { src: "{% static 'images/tech1.jpg' %}"},
+    
+  ]
+});
 
 
+$('.slide2').vegas({
+    overlay:  "{% static 'vendor/vegas/overlays/10.png' %}",
+    transition: 'zoomIn',
+    transitionDuration: 4000,
+    delay: 10000,
+    animation: [ 'kenburnsUp', 'kenburnsDown', 'kenburnsLeft', 'kenburnsRight' ],
+    animationDuration: 20000,
+   slides: [
+   { src:  "{% static 'images/tech2.jpg' %}" },
+                                
+  ]
+  
+});
+
+$('.slide3').vegas({
+    slides: [
+                { src:  "{% static 'images/tech3.png' %}" },
+              
+            ],
+    overlay:  "{% static 'vendor/vegas/overlays/10.png' %}",
+    transition: 'zoomIn',
+    transitionDuration: 4000,
+    delay: 10000,
+    animation: [ 'kenburnsUp', 'kenburnsDown', 'kenburnsLeft', 'kenburnsRight' ],
+    animationDuration: 20000,
+
+});
+
+
+$('.slide4').vegas({
+    slides: [
+                { src:  "{% static 'images/E_Elyx_01.png' %}" },
+                { src:  "{% static 'images/E_Elyx_02.png' %}" },
+                { src:  "{% static 'images/E_Elyx_08.png' %}" },
+                { src:  "{% static 'images/E_Elyx_9.png' %}" },
+                { src:  "{% static 'images/E_Elyx_11.png' %}" },
+                { src:  "{% static 'images/E_Elyx_12.png' %}" },
+                { src:  "{% static 'images/E_Elyx_15.png' %}" },
+              
+            ],
+    transition: 'slideLeft2',
+    overlay:  "{% static 'vendor/vegas/overlays/10.png' %}",
+    transitionDuration: 4000,
+    delay: 10000,
+    /*animation: [ 'kenburnsUp', 'kenburnsDown', 'kenburnsLeft', 'kenburnsRight' ],*/
+    animationDuration: 20000,
+
+});
+</script>
 
 
 </body>

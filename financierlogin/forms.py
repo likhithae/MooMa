@@ -1,15 +1,15 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
-from home.models import FinancierProfile,District,SubDistrict,Pincode
+from home.models import FinancierProfile,District,ACity,bank,branch,ifsc
 from phonenumber_field.formfields import PhoneNumberField
-#from home.models import CustomUser
+
 
 class Signup(UserCreationForm):
     #username = forms.CharField(max_length=50, required=True)
     #last_name = forms.CharField(max_length=50, required=True)
     email = forms.EmailField(max_length=254, help_text='Enter a valid email address',widget=forms.TextInput())    
-    
+
     class Meta:
         model = User
         fields = [
@@ -20,8 +20,8 @@ class Signup(UserCreationForm):
             ]
 
 
+
 class FinancierProfileForm(forms.ModelForm):
-    Size_of_farm = forms.IntegerField(widget=forms.TextInput())
     Mooma_user_id = forms.IntegerField(widget=forms.TextInput())
 
     class Meta:
@@ -32,35 +32,27 @@ class FinancierProfileForm(forms.ModelForm):
             'last_name',
             'state',
             'district',
-            'subdistrict',
-            'pincode',
-            'Address',
+            'city',
             'Phone_number',
-            'Size_of_farm',
-            'Equipment_used',
-            'Installed_date',
-            'Jersey',
-            'Holstein_Friesian',
-            'Sahiwal',
-            'Khillar',
-            'Gir',
-            'Other_breed',
-            'Mixed_breed'
+            'bank',
+            'branch',
+            'ifsccode',
             ]
 
         widgets = {
             'Phone_number': forms.TextInput(attrs={'class': 'phoneclass'}),
-            'Installed_date': forms.SelectDateWidget(years=range(2017,2030),attrs={'class': 'dateclass'}),
             'state': forms.Select(attrs={'class': 'myclass'}),
             'district': forms.Select(attrs={'class': 'myclass'}),
-            'subdistrict': forms.Select(attrs={'class': 'myclass'}),
-            'pincode': forms.Select(attrs={'class': 'myclass'}),
+            'city': forms.Select(attrs={'class': 'myclass'}),
+            'bank': forms.Select(attrs={'class': 'myclass'}),
+            'branch': forms.Select(attrs={'class': 'myclass'}),
+            'ifsccode': forms.Select(attrs={'class': 'myclass'}),
         }
+
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['district'].queryset = District.objects.none()
-    
     
         if 'state' in self.data:
             try:
@@ -70,30 +62,59 @@ class FinancierProfileForm(forms.ModelForm):
                 pass  # invalid input from the client; ignore and fallback to empty City queryset
         elif self.instance.pk:
             self.fields['district'].queryset = self.instance.state.district_set.order_by('name')
-    
+
+
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['subdistrict'].queryset = SubDistrict.objects.none()
+        self.fields['city'].queryset = ACity.objects.none()
      
         if 'district' in self.data:
             try:
                 district_id = int(self.data.get('district'))
-                self.fields['subdistrict'].queryset = SubDistrict.objects.filter(district_id=district_id).order_by('name')
+                self.fields['city'].queryset = ACity.objects.filter(district_id=district_id).order_by('name')
             except (ValueError, TypeError):
                 pass  # invalid input from the client; ignore and fallback to empty City queryset
         elif self.instance.pk:
-            self.fields['subdistrict'].queryset = self.instance.district.subdistrict_set.order_by('name')
+            self.fields['city'].queryset = self.instance.district.city_set.order_by('name')
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['pincode'].queryset = Pincode.objects.none()
+        self.fields['bank'].queryset = bank.objects.none()
      
-        if 'subdistrict' in self.data:
+        if 'city' in self.data:
             try:
-                subdistrict_id = int(self.data.get('subdistrict'))
-                self.fields['pincode'].queryset = Pincode.objects.filter(subdistrict_id=subdistrict_id).order_by('name')
+                city_id = int(self.data.get('city'))
+                self.fields['bank'].queryset = bank.objects.filter(city_id=city_id).order_by('name')
             except (ValueError, TypeError):
                 pass  # invalid input from the client; ignore and fallback to empty City queryset
         elif self.instance.pk:
-            self.fields['pincode'].queryset = self.instance.subdistrict.pincode_set.order_by('name')
+            self.fields['bank'].queryset = self.instance.city.bank_set.order_by('name')
+
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['branch'].queryset = branch.objects.none()
+     
+        if 'bank' in self.data:
+            try:
+                bank_id = int(self.data.get('bank'))
+                self.fields['branch'].queryset = branch.objects.filter(bank_id=bank_id).order_by('name')
+            except (ValueError, TypeError):
+                pass  # invalid input from the client; ignore and fallback to empty City queryset
+        elif self.instance.pk:
+            self.fields['branch'].queryset = self.instance.bank.branch_set.order_by('name')
+
+    
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['ifsccode'].queryset = ifsc.objects.none()
+    
+        if 'branch' in self.data:
+            try:
+                branch_id = int(self.data.get('branch'))
+                self.fields['ifsccode'].queryset = ifsc.objects.filter(branch_id=branch_id).order_by('name')
+            except (ValueError, TypeError):
+                pass  # invalid input from the client; ignore and fallback to empty City queryset
+        elif self.instance.pk:
+            self.fields['ifsccode'].queryset = self.instance.branch.ifsccode_set.order_by('name')
